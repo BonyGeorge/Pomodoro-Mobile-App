@@ -1,3 +1,4 @@
+// The Drawer to our App.
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
@@ -12,6 +13,7 @@ class MyDrawer extends StatelessWidget {
   }
 }
 
+/* The Drawer Structure. */
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key key}) : super(key: key);
 
@@ -29,7 +31,7 @@ class MyHomePage extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Drawer Header'),
+              child: Text('Pomodoro Timer'),
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -38,13 +40,25 @@ class MyHomePage extends StatelessWidget {
                       colors: [Colors.green, Colors.blue])),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('My Profile'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text('Timer'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('My Tasks'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('My Projects'),
               onTap: () {
                 Navigator.pop(context);
               },
