@@ -27,7 +27,7 @@ class _LandingPageState extends State<LandingPage> {
         child: Text(
           'Pomodoro Timer',
           style: TextStyle(
-              fontSize: 48.0, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     )));
