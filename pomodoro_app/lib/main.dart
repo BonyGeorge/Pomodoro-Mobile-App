@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import './ui/drawer.dart';
 import 'landing_page.dart';
-
+import './screens/profile.dart';
 void main() {
   runApp(MyApp());
 }

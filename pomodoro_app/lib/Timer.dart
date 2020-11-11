@@ -2,7 +2,7 @@
 // The Timer Page
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+//import 'package:percent_indicator/circular_percent_indicator.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,

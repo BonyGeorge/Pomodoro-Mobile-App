@@ -1,11 +1,15 @@
 // The Drawer to our App.
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import '../screens/profile.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/profile' : (context) => ProfileApp()
+      },
       home: MyHomePage(),
     );
   }
@@ -40,7 +44,7 @@ class MyHomePage extends StatelessWidget {
             ListTile(
               title: Text('My Profile'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/profile');
               },
             ),
             ListTile(
