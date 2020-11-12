@@ -1,5 +1,4 @@
-
-// The Timer Page
+// The Timer Screen.
 import 'dart:async';
 import 'package:flutter/material.dart';
 //import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -18,8 +17,8 @@ class TimerPage extends StatefulWidget {
 
 class _TimerPageState extends State<TimerPage> {
   double percent = 0;
-  static int TimeInMinut = 25;
-  int TimeInSec = TimeInMinut * 60;
+  static int timeInMinute = 25;
+  int timeInSec = timeInMinute * 60;
   //first we need to import async library and add a timer object
   Timer timer;
 // start code timer function
@@ -58,7 +57,7 @@ class _TimerPageState extends State<TimerPage> {
                   lineWidth: 20.0,
                   progressColor: Colors.white,
                   center: Text(
-                    "$TimeInMinut",
+                    "$timeInMinute",
                     style: TextStyle(color: Colors.white, fontSize: 80.0),
                   ),
                 ),

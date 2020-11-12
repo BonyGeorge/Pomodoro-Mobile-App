@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import './ui/drawer.dart';
+import './screens/register/login.dart';
+import './screens/register/signup.dart';
 import 'landing_page.dart';
-import './screens/profile.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/drawer': (context) => MyDrawer(),
+        '/login': (context) => Signin(),
+        '/signup': (context) => Signup(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -40,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Timer(
         Duration(seconds: 5),
         () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MyDrawer())));
+            context, MaterialPageRoute(builder: (context) => Signup())));
   }
 
   @override

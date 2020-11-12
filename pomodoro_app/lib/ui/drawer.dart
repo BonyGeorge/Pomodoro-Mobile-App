@@ -7,9 +7,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {
-        '/profile' : (context) => ProfileApp()
-      },
+      routes: {'/profile': (context) => ProfileApp()},
       home: MyHomePage(),
     );
   }
@@ -32,34 +30,45 @@ class MyHomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text('Pomodoro Timer'),
+            UserAccountsDrawerHeader(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops: [0.3, 1],
-                      colors: [Colors.green, Colors.blue])),
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [Colors.blue, Colors.green])),
+              accountName: Text("Abanoub George"),
+              accountEmail: Text("abanoubgeorge@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.orange,
+                child: Text(
+                  "A",
+                  style: TextStyle(fontSize: 40.0),
+                ),
+              ),
             ),
             ListTile(
+              leading: Icon(Icons.person),
               title: Text('My Profile'),
               onTap: () {
                 Navigator.pushNamed(context, '/profile');
               },
             ),
             ListTile(
+              leading: Icon(Icons.timer),
               title: Text('Timer'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
+              leading: Icon(Icons.assignment),
               title: Text('My Tasks'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
+              leading: Icon(Icons.work),
               title: Text('My Projects'),
               onTap: () {
                 Navigator.pop(context);
