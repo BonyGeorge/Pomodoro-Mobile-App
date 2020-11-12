@@ -2,7 +2,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
+import '../ui/drawer.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class TimerScreen extends StatefulWidget {
   TimerScreen({Key key}) : super(key: key);
@@ -27,11 +28,18 @@ class _TimerScreenState extends State<TimerScreen> {
     return SafeArea(
       child: Scaffold(
         drawer: MyDrawer(),
+        appBar: GradientAppBar(
+          title: Text('Pomodoro App'),
+          backgroundColorStart: Colors.cyan,
+          backgroundColorEnd: Colors.green,
+        ),
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Color(0xffbb9bf), Color(0x888158888)],
-                  begin: FractionalOffset(0.5, 1))),
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [Colors.blue, Colors.green],
+          )),
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -41,7 +49,7 @@ class _TimerScreenState extends State<TimerScreen> {
                 padding: EdgeInsets.only(top: 25.0),
                 child: Text(
                   "Pomodoro Clock",
-                  style: TextStyle(color: Colors.white, fontSize: 40.0),
+                  style: TextStyle(color: Colors.black, fontSize: 20.0),
                 ),
               ),
               Expanded(
@@ -83,15 +91,15 @@ class _TimerScreenState extends State<TimerScreen> {
                                 child: Column(
                                   children: <Widget>[
                                     Text(
-                                      "Study Time",
-                                      style: TextStyle(fontSize: 30.0),
+                                      "Think Time",
+                                      style: TextStyle(fontSize: 15.0),
                                     ),
                                     SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "25",
-                                      style: TextStyle(fontSize: 80.0),
+                                      style: TextStyle(fontSize: 50.0),
                                     ),
                                   ],
                                 ),
@@ -100,15 +108,15 @@ class _TimerScreenState extends State<TimerScreen> {
                                 child: Column(
                                   children: <Widget>[
                                     Text(
-                                      "pause Time",
-                                      style: TextStyle(fontSize: 30.0),
+                                      "Pause Time",
+                                      style: TextStyle(fontSize: 15.0),
                                     ),
                                     SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "5",
-                                      style: TextStyle(fontSize: 80.0),
+                                      style: TextStyle(fontSize: 50.0),
                                     ),
                                   ],
                                 ),
@@ -126,7 +134,7 @@ class _TimerScreenState extends State<TimerScreen> {
                             child: Padding(
                               padding: EdgeInsets.all(20.0),
                               child: Text(
-                                "Start Studying",
+                                "Start Pomodoro",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 22.0),
                               ),
