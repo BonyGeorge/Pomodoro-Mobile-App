@@ -19,7 +19,7 @@ class _TimerScreenState extends State<TimerScreen> {
   //first we need to import async library and add a timer object
   Timer timer;
 // start code timer function
-  _StartTimer() {
+  _startTimer() {
     print("test");
   }
 
@@ -127,7 +127,7 @@ class _TimerScreenState extends State<TimerScreen> {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 28.0),
                           child: RaisedButton(
-                            onPressed: _StartTimer,
+                            onPressed: _startTimer,
                             color: Color(0xffbb9bf),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(100.0)),

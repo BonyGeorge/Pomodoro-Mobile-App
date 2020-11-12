@@ -19,7 +19,7 @@ class ProfileApp extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [Colors.greenAccent, Colors.greenAccent])),
+                      colors: [Colors.greenAccent, Colors.blueAccent])),
               child: Container(
                 width: double.infinity,
                 height: 350.0,
