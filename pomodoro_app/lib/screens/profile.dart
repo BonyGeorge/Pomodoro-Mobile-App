@@ -22,7 +22,7 @@ class ProfileApp extends StatelessWidget {
                       colors: [Colors.greenAccent, Colors.blueAccent])),
               child: Container(
                 width: double.infinity,
-                height: 350.0,
+                height: 270.0,
                 child: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,7 +110,7 @@ class ProfileApp extends StatelessWidget {
                                 child: Column(
                                   children: <Widget>[
                                     Text(
-                                      "Followers",
+                                      "Projects",
                                       style: TextStyle(
                                         color: Colors.greenAccent,
                                         fontSize: 22.0,
@@ -147,20 +147,87 @@ class ProfileApp extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Bio:",
+                    "Username:",
                     style: TextStyle(
                         color: Colors.greenAccent,
                         fontStyle: FontStyle.normal,
-                        fontSize: 28.0),
+                        fontSize: 20.0),
                   ),
                   SizedBox(
                     height: 10.0,
                   ),
                   Text(
-                    'My name is Alice and I am  a freelance mobile app developper.\n'
-                    'if you need any mobile app for your company then contact me for more informations',
+                    '@username',
                     style: TextStyle(
-                      fontSize: 22.0,
+                      fontSize: 15.0,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.black,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          Container(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "E-mail:",
+                    style: TextStyle(
+                        color: Colors.greenAccent,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 20.0),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    'xxxxxx@gmail.com',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.black,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+
+
+          Container(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "Phone Number:",
+                    style: TextStyle(
+                        color: Colors.greenAccent,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 20.0),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    '123456789',
+                    style: TextStyle(
+                      fontSize: 15.0,
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.w300,
                       color: Colors.black,
@@ -172,14 +239,14 @@ class ProfileApp extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 30.0,
           ),
           Container(
-            width: 300.00,
+            width: 200.00,
             child: RaisedButton(
                 onPressed: () {},
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80.0)),
+                    borderRadius: BorderRadius.circular(60.0)),
                 elevation: 0.0,
                 padding: EdgeInsets.all(0.0),
                 child: Ink(
@@ -188,17 +255,17 @@ class ProfileApp extends StatelessWidget {
                         begin: Alignment.centerRight,
                         end: Alignment.centerLeft,
                         colors: [Colors.greenAccent, Colors.lightGreenAccent]),
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Container(
                     constraints:
-                        BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                        BoxConstraints(maxWidth: 200.0, minHeight: 50.0),
                     alignment: Alignment.center,
                     child: Text(
-                      "Contact me",
+                      " Edit",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 26.0,
+                          fontSize: 25.0,
                           fontWeight: FontWeight.w300),
                     ),
                   ),
