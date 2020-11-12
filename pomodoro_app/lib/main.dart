@@ -5,6 +5,8 @@ import './ui/drawer.dart';
 import './screens/register/login.dart';
 import './screens/register/signup.dart';
 import 'landing_page.dart';
+import './screens/profile.dart';
+import './screens/timer.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,9 +20,10 @@ class MyApp extends StatelessWidget {
       title: 'Pomodoro App',
       initialRoute: '/',
       routes: {
-        '/drawer': (context) => MyDrawer(),
         '/login': (context) => Signin(),
         '/signup': (context) => Signup(),
+        '/profile': (context) => ProfileApp(),
+        '/timer': (context) => TimerScreen(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

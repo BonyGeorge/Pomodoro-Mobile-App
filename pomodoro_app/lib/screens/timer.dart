@@ -1,21 +1,17 @@
 // The Timer Screen.
 import 'dart:async';
 import 'package:flutter/material.dart';
-//import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:pomodoro_app/ui/drawer.dart';
 
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: TimerPage(),
-    ));
-
-class TimerPage extends StatefulWidget {
-  TimerPage({Key key}) : super(key: key);
+class TimerScreen extends StatefulWidget {
+  TimerScreen({Key key}) : super(key: key);
 
   @override
-  _TimerPageState createState() => _TimerPageState();
+  _TimerScreenState createState() => _TimerScreenState();
 }
 
-class _TimerPageState extends State<TimerPage> {
+class _TimerScreenState extends State<TimerScreen> {
   double percent = 0;
   static int timeInMinute = 25;
   int timeInSec = timeInMinute * 60;
@@ -30,6 +26,7 @@ class _TimerPageState extends State<TimerPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        drawer: MyDrawer(),
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(

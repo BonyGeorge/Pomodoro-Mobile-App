@@ -62,6 +62,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_inner_drawer:
+    dependency: "direct main"
+    description:
+      name: flutter_inner_drawer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.7+2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -95,6 +102,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety.1"
+  percent_indicator:
+    dependency: "direct main"
+    description:
+      name: percent_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.8"
   sky_engine:
     dependency: transitive
     description: flutter

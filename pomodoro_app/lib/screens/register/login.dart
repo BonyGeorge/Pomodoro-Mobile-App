@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/screens/profile.dart';
 import 'package:pomodoro_app/ui/drawer.dart';
 import '../register/signup.dart';
 
@@ -71,7 +72,7 @@ class _State extends State<Signin> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MyDrawer()));
+                                builder: (context) => ProfileApp()));
                       },
                     )),
                 Container(
