@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/profile.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
-import '../register/signup.dart';
 
 class ForgetPassword extends StatefulWidget {
   @override
@@ -19,6 +17,9 @@ class _State extends State<ForgetPassword> {
             padding: EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
+                SizedBox(
+                  height: 40.0,
+                ),
                 Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(10),
@@ -29,6 +30,9 @@ class _State extends State<ForgetPassword> {
                           fontWeight: FontWeight.w500,
                           fontSize: 30),
                     )),
+                SizedBox(
+                  height: 30.0,
+                ),
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
@@ -38,6 +42,9 @@ class _State extends State<ForgetPassword> {
                       labelText: 'Email',
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 10.0,
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -51,7 +58,7 @@ class _State extends State<ForgetPassword> {
                   ),
                 ),
                 SizedBox(
-                  height: 30.0,
+                  height: 40.0,
                 ),
                 Container(
                     height: 50,
