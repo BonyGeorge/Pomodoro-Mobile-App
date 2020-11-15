@@ -83,6 +83,9 @@ class _State extends State<Signup> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 10.0,
+                ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
@@ -94,15 +97,13 @@ class _State extends State<Signup> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 30.0,
+                ),
                 Container(
-                    height: 50,
-                    margin: EdgeInsets.all(30),
-                    child: RaisedButton(
-                      textColor: Colors.white,
-                      color: Colors.green,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100.0)),
-                      child: Text('Signup'),
+                  height: 50,
+                  width: 250.00,
+                  child: RaisedButton(
                       onPressed: () {
                         print(fnameController.text);
                         print(lnameController.text);
@@ -112,11 +113,35 @@ class _State extends State<Signup> {
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) => Signin()));
                       },
-                    )),
-                Container(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ))
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100.0)),
+                      elevation: 0.0,
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: [
+                                Colors.greenAccent,
+                                Colors.lightGreenAccent
+                              ]),
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Container(
+                          constraints:
+                              BoxConstraints(maxWidth: 390.0, minHeight: 550.0),
+                          alignment: Alignment.center,
+                          child: Text(
+                            " Signup",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ),
+                      )),
+                ),
               ],
             )));
   }

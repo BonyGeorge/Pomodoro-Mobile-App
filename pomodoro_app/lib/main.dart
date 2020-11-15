@@ -4,6 +4,7 @@ import 'dart:async';
 import './ui/drawer.dart';
 import './screens/register/login.dart';
 import './screens/register/signup.dart';
+import './screens/register/forget.dart';
 import 'landing_page.dart';
 import './screens/profile.dart';
 import './screens/timer.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => Signup(),
         '/profile': (context) => ProfileApp(),
         '/timer': (context) => TimerScreen(),
+        '/forget': (context) => ForgetPassword(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

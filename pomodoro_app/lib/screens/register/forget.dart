@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/profile.dart';
 import 'package:pomodoro_app/ui/drawer.dart';
 import '../register/signup.dart';
-import '../register/forget.dart';
 
-class Signin extends StatefulWidget {
+class ForgetPassword extends StatefulWidget {
   @override
   _State createState() => _State();
 }
 
-class _State extends State<Signin> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+class _State extends State<ForgetPassword> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController confirmEmail = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class _State extends State<Signin> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'Welcome Back',
+                      'Reset Password',
                       style: TextStyle(
                           color: Colors.green[300],
                           fontWeight: FontWeight.w500,
@@ -33,10 +32,10 @@ class _State extends State<Signin> {
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
-                    controller: nameController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'User Name',
+                      labelText: 'Email',
                     ),
                   ),
                 ),
@@ -44,33 +43,23 @@ class _State extends State<Signin> {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
                     obscureText: true,
-                    controller: passwordController,
+                    controller: confirmEmail,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Password',
+                      labelText: 'Confirm Email',
                     ),
                   ),
                 ),
-                FlatButton(
-                  onPressed: () {
-                    //signup screen
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ForgetPassword()));
-                  },
-                  //forgot password screen
-
-                  textColor: Colors.green[300],
-                  child: Text('Forgot Password'),
+                SizedBox(
+                  height: 30.0,
                 ),
                 Container(
                     height: 50,
                     width: 250.00,
                     child: RaisedButton(
                         onPressed: () {
-                          print(nameController.text);
-                          print(passwordController.text);
+                          print(emailController.text);
+                          print(confirmEmail.text);
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -96,32 +85,13 @@ class _State extends State<Signin> {
                                   maxWidth: 390.0, minHeight: 550.0),
                               alignment: Alignment.center,
                               child: Text(
-                                " Login",
+                                " Reset ",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 25.0,
                                     fontWeight: FontWeight.w300),
                               ),
                             )))),
-                Container(
-                    child: Row(
-                  children: <Widget>[
-                    Text("Doesn't have an account?"),
-                    FlatButton(
-                      textColor: Colors.green[200],
-                      child: Text(
-                        'Signup',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        //signup screen
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Signup()));
-                      },
-                    )
-                  ],
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ))
               ],
             )));
   }

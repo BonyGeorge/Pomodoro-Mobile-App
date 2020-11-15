@@ -17,12 +17,12 @@ class MyDrawer extends StatelessWidget {
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [Colors.blue, Colors.green])),
-            accountName: Text("Abanoub George"),
-            accountEmail: Text("abanoubgeorge@gmail.com"),
+            accountName: Text("Promodoro"),
+            accountEmail: Text("Promodoro_App@gmail.com"),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.orange,
               child: Text(
-                "A",
+                "P",
                 style: TextStyle(fontSize: 40.0),
               ),
             ),

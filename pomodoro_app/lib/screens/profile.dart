@@ -35,7 +35,7 @@ class ProfileApp extends StatelessWidget {
                         radius: 50.0,
                       ),
                       SizedBox(
-                        height: 10.0,
+                        height: 5.0,
                       ),
                       Text(
                         "Name",
@@ -45,7 +45,7 @@ class ProfileApp extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 10.0,
+                        height: 5.0,
                       ),
                       Card(
                         margin: EdgeInsets.symmetric(
@@ -55,7 +55,7 @@ class ProfileApp extends StatelessWidget {
                         elevation: 5.0,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 22.0),
+                              horizontal: 8.0, vertical: 16.0),
                           child: Row(
                             children: <Widget>[
                               Expanded(
@@ -141,9 +141,9 @@ class ProfileApp extends StatelessWidget {
           Container(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 16.0),
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
@@ -157,7 +157,7 @@ class ProfileApp extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    '@username',
+                    '@Pomodoro',
                     style: TextStyle(
                       fontSize: 15.0,
                       fontStyle: FontStyle.italic,
@@ -170,14 +170,11 @@ class ProfileApp extends StatelessWidget {
               ),
             ),
           ),
-
           Container(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 16.0),
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     "E-mail:",
@@ -190,7 +187,7 @@ class ProfileApp extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    'xxxxxx@gmail.com',
+                    'Promodoro_App@gmail.com',
                     style: TextStyle(
                       fontSize: 15.0,
                       fontStyle: FontStyle.italic,
@@ -203,16 +200,11 @@ class ProfileApp extends StatelessWidget {
               ),
             ),
           ),
-
-
-
           Container(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 16.0),
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     "Phone Number:",
@@ -225,7 +217,7 @@ class ProfileApp extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    '123456789',
+                    '0123456789',
                     style: TextStyle(
                       fontSize: 15.0,
                       fontStyle: FontStyle.italic,
