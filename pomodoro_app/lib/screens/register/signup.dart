@@ -34,7 +34,7 @@ class _State extends State<Signup> {
                     )),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
+                  child: TextFormField(
                     controller: fnameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -44,7 +44,7 @@ class _State extends State<Signup> {
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
+                  child: TextFormField(
                     controller: lnameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -54,7 +54,7 @@ class _State extends State<Signup> {
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
+                  child: TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -64,7 +64,7 @@ class _State extends State<Signup> {
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
+                  child: TextFormField(
                     controller: numController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -74,7 +74,7 @@ class _State extends State<Signup> {
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: TextField(
+                  child: TextFormField(
                     obscureText: true,
                     controller: passwordController,
                     decoration: InputDecoration(
@@ -88,7 +88,7 @@ class _State extends State<Signup> {
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: TextField(
+                  child: TextFormField(
                     obscureText: true,
                     controller: repasswordController,
                     decoration: InputDecoration(
