@@ -84,6 +84,8 @@ class _State extends State<Signup> {
                           ),
                           validator: (String value) {
                             if (value.isEmpty) return "This Entity is Empty";
+                            if (context.maxLength != 11)
+                              return "You should enter 11 numbers";
                           }),
                     ),
                     Container(
@@ -112,7 +114,14 @@ class _State extends State<Signup> {
                             labelText: 'Confirm Password',
                           ),
                           validator: (String value) {
-                            if (value.isEmpty) return "This Entity is Empty";
+                            if (value.isEmpty)
+                              return "This Entity is Empty";
+                            else {
+                              if (!passwordController.hasMatch(value))
+                                return 'Enter valid password';
+                              else
+                                return null;
+                            }
                           }),
                     ),
                     SizedBox(
