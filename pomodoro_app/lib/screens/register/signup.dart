@@ -77,6 +77,7 @@ class _State extends State<Signup> {
                     Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
+                          maxLength: 11,
                           controller: numController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
