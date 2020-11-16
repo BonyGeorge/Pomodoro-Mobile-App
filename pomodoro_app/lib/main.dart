@@ -1,13 +1,13 @@
 // The Main frame.
 import 'package:flutter/material.dart';
 import 'dart:async';
-import './ui/drawer.dart';
 import './screens/register/login.dart';
 import './screens/register/signup.dart';
 import './screens/register/forget.dart';
 import 'landing_page.dart';
 import './screens/profile.dart';
 import './screens/timer.dart';
+import './screens/tasks.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => ProfileApp(),
         '/timer': (context) => TimerScreen(),
         '/forget': (context) => ForgetPassword(),
+        '/tasks': (context) => Tasks(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

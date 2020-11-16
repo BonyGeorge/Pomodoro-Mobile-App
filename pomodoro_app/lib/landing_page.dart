@@ -1,4 +1,5 @@
 // The Landing Page.
+/* Here is our custom made splashscreen .*/
 import 'package:flutter/material.dart';
 import 'package:loading/loading.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';

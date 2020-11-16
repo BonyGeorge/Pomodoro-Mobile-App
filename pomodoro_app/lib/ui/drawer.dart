@@ -1,4 +1,5 @@
 // The Drawer to our App.
+/* Here is the drawer where the user can navigate to any screen he wants.*/
 import 'package:flutter/material.dart';
 
 /* The Drawer Structure. */
@@ -45,7 +46,7 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(Icons.assignment),
             title: Text('My Tasks'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/tasks');
             },
           ),
           ListTile(
