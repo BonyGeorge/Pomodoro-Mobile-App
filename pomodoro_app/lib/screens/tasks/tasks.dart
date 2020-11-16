@@ -2,6 +2,7 @@
 /* Here is all of the user daily tasks.*/
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/tasks/add_task.dart';
+import 'package:pomodoro_app/ui/checkbox.dart';
 import 'package:pomodoro_app/ui/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
@@ -37,6 +38,7 @@ class _TaskState extends State<Task> {
                 leading: Icon(Icons.menu),
                 key: ValueKey("$item"),
                 title: Text("$item"),
+                trailing: MyCheckbox(),
               ),
             )
             .toList(),

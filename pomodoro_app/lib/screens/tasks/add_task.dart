@@ -68,8 +68,7 @@ class _AddTaskState extends State<AddTask> {
               width: 200.00,
               child: RaisedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Task()));
+                    Navigator.pop(context);
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(60.0)),
