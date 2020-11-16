@@ -1,5 +1,6 @@
 // The Main frame.
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/screens/tasks/add_task.dart';
 import 'dart:async';
 import './screens/register/login.dart';
 import './screens/register/signup.dart';
@@ -7,7 +8,7 @@ import './screens/register/forget.dart';
 import 'landing_page.dart';
 import './screens/profile.dart';
 import './screens/timer.dart';
-import './screens/tasks.dart';
+import './screens/tasks/tasks.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,10 +27,10 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => ProfileApp(),
         '/timer': (context) => TimerScreen(),
         '/forget': (context) => ForgetPassword(),
-        '/tasks': (context) => Tasks(),
+        '/tasks': (context) => Task(),
+        '/addtasks': (context) => AddTask(),
       },
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),

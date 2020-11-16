@@ -1,4 +1,4 @@
-// The Drawer to our App.
+// The Drawer of our App.
 /* Here is the drawer where the user can navigate to any screen he wants.*/
 import 'package:flutter/material.dart';
 
