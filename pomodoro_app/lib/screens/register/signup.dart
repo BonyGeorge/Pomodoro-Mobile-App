@@ -38,11 +38,11 @@ class _State extends State<Signup> {
                     Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
-                        maxLength: 15,
+                        maxLength: 25,
                         controller: fnameController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'First Name',
+                          labelText: 'Full Name',
                         ),
                         validator: (String value) {
                           if (value.isEmpty) return "This Entity is Empty";
@@ -56,7 +56,7 @@ class _State extends State<Signup> {
                         controller: lnameController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Last Name',
+                          labelText: 'Username',
                         ),
                         validator: (String value) {
                           if (value.isEmpty) return "This Entity is Empty";
