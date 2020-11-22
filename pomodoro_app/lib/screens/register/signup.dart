@@ -46,7 +46,10 @@ class _State extends State<Signup> {
                           labelText: 'Full Name',
                         ),
                         validator: (value) {
-                          if (value.isEmpty) return "This Entity is Empty";
+                          return value.isEmpty ? "This Entity is Empty" : null;
+                        },
+                        onSaved: (value) {
+                          print("Saved form $value");
                         },
                       ),
                     ),
@@ -60,7 +63,7 @@ class _State extends State<Signup> {
                           labelText: 'Username',
                         ),
                         validator: (value) {
-                          if (value.isEmpty) return "This Entity is Empty";
+                          return value.isEmpty ? "This Entity is Empty" : null;
                         },
                       ),
                     ),
@@ -73,7 +76,7 @@ class _State extends State<Signup> {
                           labelText: 'E-mail',
                         ),
                         validator: (value) {
-                          if (value.isEmpty) return "This Entity is Empty";
+                          return value.isEmpty ? "This Entity is Empty" : null;
                         },
                       ),
                     ),
@@ -87,7 +90,9 @@ class _State extends State<Signup> {
                             labelText: 'Mobile Number',
                           ),
                           validator: (value) {
-                            if (value.isEmpty) return "This Entity is Empty";
+                            return value.isEmpty
+                                ? "This Entity is Empty"
+                                : null;
                           }),
                     ),
                     Container(
