@@ -39,6 +39,7 @@ class _State extends State<ForgetPassword> {
                     Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
+                        autofocus: true,
                         controller: emailController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
