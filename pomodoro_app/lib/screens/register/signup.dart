@@ -45,7 +45,7 @@ class _State extends State<Signup> {
                           border: OutlineInputBorder(),
                           labelText: 'Full Name',
                         ),
-                        validator: (String value) {
+                        validator: (value) {
                           if (value.isEmpty) return "This Entity is Empty";
                         },
                       ),
@@ -59,7 +59,7 @@ class _State extends State<Signup> {
                           border: OutlineInputBorder(),
                           labelText: 'Username',
                         ),
-                        validator: (String value) {
+                        validator: (value) {
                           if (value.isEmpty) return "This Entity is Empty";
                         },
                       ),
@@ -72,7 +72,7 @@ class _State extends State<Signup> {
                           border: OutlineInputBorder(),
                           labelText: 'E-mail',
                         ),
-                        validator: (String value) {
+                        validator: (value) {
                           if (value.isEmpty) return "This Entity is Empty";
                         },
                       ),
@@ -86,7 +86,7 @@ class _State extends State<Signup> {
                             border: OutlineInputBorder(),
                             labelText: 'Mobile Number',
                           ),
-                          validator: (String value) {
+                          validator: (value) {
                             if (value.isEmpty) return "This Entity is Empty";
                           }),
                     ),
@@ -99,8 +99,10 @@ class _State extends State<Signup> {
                             border: OutlineInputBorder(),
                             labelText: 'Password',
                           ),
-                          validator: (String value) {
-                            if (value.isEmpty) return "This Entity is Empty";
+                          validator: (value) {
+                            return value.isEmpty
+                                ? "This Entity is Empty"
+                                : null;
                           }),
                     ),
                     SizedBox(
@@ -115,8 +117,10 @@ class _State extends State<Signup> {
                             border: OutlineInputBorder(),
                             labelText: 'Confirm Password',
                           ),
-                          validator: (String value) {
-                            if (value.isEmpty) return "This Entity is Empty";
+                          validator: (value) {
+                            return value.isEmpty
+                                ? "This Entity is Empty"
+                                : null;
                           }),
                     ),
                     SizedBox(
