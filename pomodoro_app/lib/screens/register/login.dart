@@ -35,6 +35,7 @@ class _State extends State<Signin> {
                     Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
+                        autofocus: true,
                         controller: nameController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
