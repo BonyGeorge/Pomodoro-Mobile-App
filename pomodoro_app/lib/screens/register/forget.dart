@@ -46,7 +46,7 @@ class _State extends State<ForgetPassword> {
                           labelText: 'Email',
                         ),
                         validator: (String value) {
-                          if (value.isEmpty) return "This Entity is Empty";
+                          return value.isEmpty ? "This Entity is Empty" : null;
                         },
                       ),
                     ),
@@ -63,7 +63,7 @@ class _State extends State<ForgetPassword> {
                           labelText: 'Confirm Email',
                         ),
                         validator: (String value) {
-                          if (value.isEmpty) return "This Entity is Empty";
+                          return value.isEmpty ? "This Entity is Empty" : null;
                         },
                       ),
                     ),
