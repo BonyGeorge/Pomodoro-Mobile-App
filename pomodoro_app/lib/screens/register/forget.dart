@@ -85,6 +85,10 @@ class _State extends State<ForgetPassword> {
                                       MaterialPageRoute(
                                           builder: (context) => ProfileApp()));
                                 }
+                                if (_formKey.currentState.validate()) {
+                                  Scaffold.of(context).showSnackBar(
+                                      SnackBar(content: Text("Process")));
+                                }
                               });
                             },
                             shape: RoundedRectangleBorder(

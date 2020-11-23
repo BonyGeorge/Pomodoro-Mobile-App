@@ -132,6 +132,10 @@ class _State extends State<Signin> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Signup()));
+                            if (_formKey.currentState.validate()) {
+                              Scaffold.of(context).showSnackBar(
+                                  SnackBar(content: Text("Process")));
+                            }
                           },
                         )
                       ],
