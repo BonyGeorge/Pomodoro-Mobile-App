@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/screens/editprofile.dart';
 import '../ui/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
@@ -22,7 +23,7 @@ class ProfileApp extends StatelessWidget {
                       colors: [Colors.greenAccent, Colors.blueAccent])),
               child: Container(
                 width: double.infinity,
-                height: 270.0,
+                height: 210.0,
                 child: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,108 +33,22 @@ class ProfileApp extends StatelessWidget {
                         backgroundImage: NetworkImage(
                           "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
                         ),
-                        radius: 50.0,
+                        radius: 60.0,
                       ),
                       SizedBox(
-                        height: 5.0,
+                        height: 6.0,
                       ),
                       Text(
-                        "Name",
+                        "@Pomodoro",
                         style: TextStyle(
-                          fontSize: 22.0,
+                          fontSize: 20.0,
                           color: Colors.white,
                         ),
                       ),
                       SizedBox(
-                        height: 5.0,
+                        height: 6.0,
                       ),
-                      Card(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 5.0),
-                        clipBehavior: Clip.antiAlias,
-                        color: Colors.white,
-                        elevation: 5.0,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0, vertical: 16.0),
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Column(
-                                  children: <Widget>[
-                                    Text(
-                                      "Tasks",
-                                      style: TextStyle(
-                                        color: Colors.greenAccent,
-                                        fontSize: 22.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Text(
-                                      "5200",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.lightGreenAccent,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  children: <Widget>[
-                                    Text(
-                                      "Teams",
-                                      style: TextStyle(
-                                        color: Colors.greenAccent,
-                                        fontSize: 22.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Text(
-                                      "28.5K",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.lightGreenAccent,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  children: <Widget>[
-                                    Text(
-                                      "Projects",
-                                      style: TextStyle(
-                                        color: Colors.greenAccent,
-                                        fontSize: 22.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Text(
-                                      "1300",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.lightGreenAccent,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
+                     
                     ],
                   ),
                 ),
@@ -141,13 +56,13 @@ class ProfileApp extends StatelessWidget {
           Container(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Username:",
+                    "Full Name:",
                     style: TextStyle(
                         color: Colors.greenAccent,
                         fontStyle: FontStyle.normal,
@@ -157,7 +72,7 @@ class ProfileApp extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    '@Pomodoro',
+                    'Pomodoro',
                     style: TextStyle(
                       fontSize: 15.0,
                       fontStyle: FontStyle.italic,
@@ -173,7 +88,7 @@ class ProfileApp extends StatelessWidget {
           Container(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
               child: Column(
                 children: <Widget>[
                   Text(
@@ -203,7 +118,7 @@ class ProfileApp extends StatelessWidget {
           Container(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
               child: Column(
                 children: <Widget>[
                   Text(
@@ -230,13 +145,47 @@ class ProfileApp extends StatelessWidget {
               ),
             ),
           ),
+
+          Container(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    "About me:",
+                    style: TextStyle(
+                        color: Colors.greenAccent,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 20.0),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    'Student/Developer...',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.black,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           SizedBox(
             height: 30.0,
           ),
           Container(
-            width: 200.00,
+            width: 160.00,
             child: RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Editprofile()));
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(60.0)),
                 elevation: 0.0,
@@ -254,7 +203,7 @@ class ProfileApp extends StatelessWidget {
                         BoxConstraints(maxWidth: 200.0, minHeight: 50.0),
                     alignment: Alignment.center,
                     child: Text(
-                      " Edit",
+                      "Edit",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 25.0,
