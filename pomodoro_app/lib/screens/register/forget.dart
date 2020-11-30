@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/profile.dart';
+import 'package:pomodoro_app/screens/Profile/profile.dart';
 
 class ForgetPassword extends StatefulWidget {
   @override

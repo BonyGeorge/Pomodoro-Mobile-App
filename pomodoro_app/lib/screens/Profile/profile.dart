@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/editprofile.dart';
-import '../ui/drawer.dart';
+import 'package:pomodoro_app/screens/Profile/editprofile.dart';
+import 'package:pomodoro_app/ui/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class ProfileApp extends StatelessWidget {
@@ -9,7 +9,7 @@ class ProfileApp extends StatelessWidget {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: GradientAppBar(
-        title: Text('Pomodoro App'),
+        title: Text('My Profile'),
         backgroundColorStart: Colors.cyan,
         backgroundColorEnd: Colors.green,
       ),
@@ -48,7 +48,6 @@ class ProfileApp extends StatelessWidget {
                       SizedBox(
                         height: 6.0,
                       ),
-                     
                     ],
                   ),
                 ),
@@ -145,7 +144,6 @@ class ProfileApp extends StatelessWidget {
               ),
             ),
           ),
-
           Container(
             child: Padding(
               padding:
@@ -183,8 +181,8 @@ class ProfileApp extends StatelessWidget {
             width: 160.00,
             child: RaisedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Editprofile()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Editprofile()));
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(60.0)),
@@ -195,7 +193,7 @@ class ProfileApp extends StatelessWidget {
                     gradient: LinearGradient(
                         begin: Alignment.centerRight,
                         end: Alignment.centerLeft,
-                        colors: [Colors.greenAccent, Colors.lightGreenAccent]),
+                        colors: [Colors.green, Colors.green]),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Container(

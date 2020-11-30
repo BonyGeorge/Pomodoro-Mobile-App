@@ -53,7 +53,7 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(Icons.work),
             title: Text('My Projects'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/projects');
             },
           ),
         ],

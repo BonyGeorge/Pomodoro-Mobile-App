@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/profile.dart';
-import '../ui/drawer.dart';
+import 'package:pomodoro_app/screens/Profile/profile.dart';
+import 'package:pomodoro_app/ui/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class Editprofile extends StatefulWidget {
@@ -20,40 +20,27 @@ class _State extends State<Editprofile> {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: GradientAppBar(
-        title: Text('Pomodoro App'),
+        title: Text('Edit Profile'),
         backgroundColorStart: Colors.cyan,
         backgroundColorEnd: Colors.green,
       ),
       body: Column(
         children: <Widget>[
           Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Colors.greenAccent, Colors.blueAccent])),
               child: Container(
-                width: double.infinity,
-                height: 60.0,
-                child: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Edit your profile",
-                        style: TextStyle(
-                          fontSize: 23.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 6.0,
-                      )
-                    ],
-                  ),
-                ),
-              )),
+            width: double.infinity,
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 6.0,
+                  )
+                ],
+              ),
+            ),
+          )),
           Container(
             padding:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
@@ -125,7 +112,7 @@ class _State extends State<Editprofile> {
                     gradient: LinearGradient(
                         begin: Alignment.centerRight,
                         end: Alignment.centerLeft,
-                        colors: [Colors.greenAccent, Colors.lightGreenAccent]),
+                        colors: [Colors.green, Colors.green]),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Container(
