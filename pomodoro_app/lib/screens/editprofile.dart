@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/editprofile.dart';
 import 'package:pomodoro_app/screens/profile.dart';
 import '../ui/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
-
 
 class Editprofile extends StatefulWidget {
   @override
   _State createState() => _State();
 }
+
 class _State extends State<Editprofile> {
-   var _formKey = GlobalKey<FormState>();
-    TextEditingController fnameController = TextEditingController();
-    TextEditingController aboutController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController numController = TextEditingController();
+  //var _formKey = GlobalKey<FormState>();
+  TextEditingController fnameController = TextEditingController();
+  TextEditingController aboutController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController numController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -55,57 +54,58 @@ class _State extends State<Editprofile> {
                   ),
                 ),
               )),
-         Container(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-                      child: TextFormField(
-                        autofocus: true,
-                        maxLength: 25,
-                        controller: fnameController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Full Name',
-                        ),
-                        onSaved: (value) {
-                          print("Saved form $value");
-                        },
-                      ),
-                    ),
           Container(
-                      padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
-                      child: TextFormField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'E-mail',
-                        ),
-                      ),
-                    ),
-           Container(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-                      child: TextFormField(
-                          maxLength: 11,
-                          controller: numController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Mobile Number',
-                          ),
-                          validator: (value) {
-                            return value.isEmpty
-                                ? "This Entity is Empty"
-                                : null;
-                          }),
-                    ),
-
+            padding:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+            child: TextFormField(
+              autofocus: true,
+              maxLength: 25,
+              controller: fnameController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Full Name',
+              ),
+              onSaved: (value) {
+                print("Saved form $value");
+              },
+            ),
+          ),
           Container(
-                      padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
-                      child: TextFormField(
-                        controller: aboutController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'About me',
-                        ),
-                      ),
-                    ),
+            padding:
+                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
+            child: TextFormField(
+              controller: emailController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'E-mail',
+              ),
+            ),
+          ),
+          Container(
+            padding:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+            child: TextFormField(
+                maxLength: 11,
+                controller: numController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Mobile Number',
+                ),
+                validator: (value) {
+                  return value.isEmpty ? "This Entity is Empty" : null;
+                }),
+          ),
+          Container(
+            padding:
+                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
+            child: TextFormField(
+              controller: aboutController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'About me',
+              ),
+            ),
+          ),
           SizedBox(
             height: 30.0,
           ),
@@ -113,8 +113,8 @@ class _State extends State<Editprofile> {
             width: 160.00,
             child: RaisedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ProfileApp()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => ProfileApp()));
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(60.0)),

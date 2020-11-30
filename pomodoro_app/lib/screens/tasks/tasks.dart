@@ -21,6 +21,15 @@ class _TaskState extends State<Task> {
         title: Text('Pomodoro App'),
         backgroundColorStart: Colors.cyan,
         backgroundColorEnd: Colors.green,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => AddTask()));
+            },
+          ),
+        ],
       ),
       drawer: MyDrawer(),
       body: ReorderableListView(
@@ -46,15 +55,6 @@ class _TaskState extends State<Task> {
           setState(() {
             _updateMyTasks(start, current);
           });
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-        backgroundColor: Colors.green,
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => AddTask()));
         },
       ),
     );

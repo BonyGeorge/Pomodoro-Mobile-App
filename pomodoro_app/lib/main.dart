@@ -44,6 +44,8 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+/* We used Asynchronus here to navigate to the signup screen after a timer of 
+5 secands. */
 class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
