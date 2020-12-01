@@ -107,7 +107,7 @@ class _State extends State<Signup> {
                           if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
                                   .hasMatch(value) &&
                               // ignore: unrelated_type_equality_checks
-                              value != 11) {
+                              value.length != 11) {
                             return 'Enter 11 No. only without letters';
                           }
                           return null;
