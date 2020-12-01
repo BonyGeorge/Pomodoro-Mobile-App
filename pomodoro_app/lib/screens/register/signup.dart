@@ -76,24 +76,42 @@ class _State extends State<Signup> {
                           labelText: 'E-mail',
                         ),
                         validator: (value) {
-                          return value.isEmpty ? "This Entity is Empty" : null;
+                          if (value.isEmpty) {
+                            return value.isEmpty
+                                ? "This Entity is Empty"
+                                : null;
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return 'Please enter a valid Email';
+                          }
+                          return null;
                         },
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
-                          maxLength: 11,
-                          controller: numController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Mobile Number',
-                          ),
-                          validator: (value) {
+                        maxLength: 11,
+                        controller: numController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Mobile Number',
+                        ),
+                        validator: (value) {
+                          if (value.isEmpty) {
                             return value.isEmpty
                                 ? "This Entity is Empty"
                                 : null;
-                          }),
+                          }
+                          if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
+                                  .hasMatch(value) &&
+                              value != 11) {
+                            return 'Enter 11 No. only without letters';
+                          }
+                          return null;
+                        },
+                      ),
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
