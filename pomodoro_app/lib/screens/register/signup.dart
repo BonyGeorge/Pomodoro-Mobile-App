@@ -67,7 +67,7 @@ class _State extends State<Signup> {
                         },
                       ),
                     ),
-                   Container(
+                    Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
                         controller: emailController,
@@ -93,6 +93,7 @@ class _State extends State<Signup> {
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
                         maxLength: 11,
+                        keyboardType: TextInputType.number,
                         controller: numController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
@@ -169,8 +170,8 @@ class _State extends State<Signup> {
                                     MaterialPageRoute(
                                         builder: (context) => Signin()));
                                 if (_formKey.currentState.validate()) {
-                                  Scaffold.of(context).showSnackBar(
-                                      SnackBar(content: Text("Process")));
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text("Processing Data")));
                                 }
                               }
                             });

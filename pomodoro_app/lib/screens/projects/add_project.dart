@@ -1,7 +1,6 @@
 // The Add Task Page.
 /* Here we add tasks.*/
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
 import 'package:pomodoro_app/screens/projects/projects.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
