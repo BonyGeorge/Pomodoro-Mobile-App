@@ -39,7 +39,7 @@ class _AddProjectState extends State<AddProject> {
                         TextField(
                           decoration:
                               InputDecoration(labelText: 'Add Task name'),
-                          keyboardType: TextInputType.number,
+
                           onSubmitted: null,
                           // onChanged: (val) => amountInput = val,
                         ),

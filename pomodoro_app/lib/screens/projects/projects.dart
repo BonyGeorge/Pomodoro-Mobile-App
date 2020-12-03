@@ -62,7 +62,7 @@ class _ProjectState extends State<Project> {
         },
         label: Text('Delete'),
         icon: Icon(Icons.delete),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.red,
       ),
     );
   }

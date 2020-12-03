@@ -18,7 +18,7 @@ class _TaskState extends State<Task> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-        title: Text('Pomodoro App'),
+        title: Text('My Tasks'),
         backgroundColorStart: Colors.cyan,
         backgroundColorEnd: Colors.green,
         actions: <Widget>[
