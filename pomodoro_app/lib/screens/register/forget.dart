@@ -63,9 +63,9 @@ class _State extends State<ForgetPassword> {
                       height: 10.0,
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      padding: EdgeInsets.all(10),
                       child: TextFormField(
-                        obscureText: true,
+                        autofocus: false,
                         controller: confirmEmail,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
@@ -81,6 +81,7 @@ class _State extends State<ForgetPassword> {
                               .hasMatch(value)) {
                             return 'Please enter a valid Email';
                           }
+
                           return null;
                         },
                       ),
