@@ -37,8 +37,9 @@ class _BreakState extends State<Break> {
           ":" +
           (swatch.elapsed.inSeconds % 60).toString().padLeft(2, "0");
 
-      if (stopTimetodisplay == "00:25:00") {
+      if (stopTimetodisplay == "00:01:00") {
         swatch.stop();
+        stopTimetodisplay = "You finished the break .. press work button";
       }
     });
   }
@@ -74,7 +75,7 @@ class _BreakState extends State<Break> {
       child: Scaffold(
         drawer: MyDrawer(),
         appBar: GradientAppBar(
-          title: Text('Work Page'),
+          title: Text('Break Page'),
           backgroundColorStart: Colors.cyan,
           backgroundColorEnd: Colors.green,
         ),
@@ -82,13 +83,24 @@ class _BreakState extends State<Break> {
           child: Column(
             children: <Widget>[
               Expanded(
+                flex: 1,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Your break time is 5 min only and the timer will stop",
+                    style:
+                        TextStyle(fontSize: 10.0, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+              Expanded(
                 flex: 6,
                 child: Container(
                   alignment: Alignment.center,
                   child: Text(
                     stopTimetodisplay,
                     style:
-                        TextStyle(fontSize: 50.0, fontWeight: FontWeight.w700),
+                        TextStyle(fontSize: 30.0, fontWeight: FontWeight.w700),
                   ),
                 ),
               ),
@@ -146,14 +158,19 @@ class _BreakState extends State<Break> {
                             ),
                           ),
                           RaisedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TimerScreen()));
+                            },
                             color: Colors.black,
                             padding: EdgeInsets.symmetric(
                               horizontal: 40.0,
                               vertical: 15.0,
                             ),
                             child: Text(
-                              "Break",
+                              "Work",
                               style: TextStyle(
                                   fontSize: 20.0, color: Colors.white),
                             ),

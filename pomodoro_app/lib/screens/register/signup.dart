@@ -126,6 +126,7 @@ class _State extends State<Signup> {
                           validator: (value) {
                             return value.isEmpty
                                 ? "This Entity is Empty"
+                                : null;
                           }),
                     ),
                     SizedBox(
