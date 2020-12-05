@@ -1,33 +1,32 @@
 // The Tasks Page.
 /* Here is all of the user daily tasks.*/
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/projects/Project1.dart';
-import 'package:pomodoro_app/screens/projects/add_project.dart';
+import 'package:pomodoro_app/screens/projects/ProjectTask.dart';
 import 'package:pomodoro_app/ui/checkbox.dart';
 import 'package:pomodoro_app/ui/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-class Project extends StatefulWidget {
+class ProjectT extends StatefulWidget {
   @override
-  _ProjectState createState() => _ProjectState();
+  _TaskState createState() => _TaskState();
 }
 
-class _ProjectState extends State<Project> {
-  List userprojects = ["Project 1", "Project 2"];
+class _TaskState extends State<ProjectT> {
+  List userTasks = ["Task 1", "Task 2", "Task 3", "Task 4"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-        title: Text('My Projects'),
+        title: Text('Project1'),
         backgroundColorStart: Colors.cyan,
         backgroundColorEnd: Colors.green,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => AddProject()));
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => AddPTask()));
             },
           ),
         ],
@@ -37,60 +36,51 @@ class _ProjectState extends State<Project> {
         padding: EdgeInsets.only(
           top: 40,
         ),
-        header: Text("Your Projects",
+        header: Text("Your Tasks",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
             )),
-        children: userprojects
+        children: userTasks
             .map(
               (item) => ListTile(
+                leading: Icon(Icons.menu),
                 key: ValueKey("$item"),
                 title: Text("$item"),
                 trailing: MyCheckbox(),
-                
               ),
             )
             .toList(),
         onReorder: (start, current) {
           setState(() {
-            _updateMyProjects(start, current);
+            _updateMyTasks(start, current);
           });
         },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => ProjectT()));
-        },
-        label: Text('View'),
-        icon: Icon(Icons.search),
-        backgroundColor: Colors.green,
       ),
     );
   }
 
-  void _updateMyProjects(start, current) {
+  void _updateMyTasks(start, current) {
     // Dragging the Task from top to bottom.
     if (start < current) {
       int end = current - 1;
-      String startItem = userprojects[start];
+      String startItem = userTasks[start];
       int i = 0;
       int local = start;
       do {
-        userprojects[local] = userprojects[++local];
+        userTasks[local] = userTasks[++local];
         i++;
       } while (i < end - start);
-      userprojects[end] = startItem;
+      userTasks[end] = startItem;
     }
 
     // Dragging the Task from bottom to top.
     else if (start > current) {
-      String startItem = userprojects[start];
+      String startItem = userTasks[start];
       for (int i = start; i > current; i--) {
-        userprojects[i] = userprojects[i - 1];
+        userTasks[i] = userTasks[i - 1];
       }
-      userprojects[current] = startItem;
+      userTasks[current] = startItem;
     }
   }
 }
