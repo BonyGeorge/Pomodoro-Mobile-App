@@ -71,8 +71,17 @@ class _State extends State<ForgetPassword> {
                           border: OutlineInputBorder(),
                           labelText: 'Confirm Email',
                         ),
-                        validator: (String value) {
-                          return value.isEmpty ? "This Entity is Empty" : null;
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return value.isEmpty
+                                ? "This Entity is Empty"
+                                : null;
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return 'Please enter a valid Email';
+                          }
+                          return null;
                         },
                       ),
                     ),
