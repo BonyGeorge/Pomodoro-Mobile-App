@@ -14,101 +14,153 @@ class Break extends StatefulWidget {
 }
 
 class _BreakState extends State<Break> {
-  Duration _duration = Duration(seconds: 10000);
-  GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
+  bool startispressed = true;
+  bool stopispressed = true;
+  bool resetispressed = true;
+  String stopTimetodisplay = "00:00:00";
+  var swatch = Stopwatch();
+  final dur = const Duration(seconds: 1);
+
+  void starttimer() {
+    Timer(dur, keepRunning);
+  }
+
+  void keepRunning() {
+    if (swatch.isRunning) {
+      starttimer();
+    }
+    setState(() {
+      stopTimetodisplay = swatch.elapsed.inHours.toString().padLeft(2, "0") +
+          ":" +
+          (swatch.elapsed.inMinutes % 60).toString().padLeft(2, "0") +
+          ":" +
+          (swatch.elapsed.inSeconds % 60).toString().padLeft(2, "0");
+
+      if (stopTimetodisplay == "00:25:00") {
+        swatch.stop();
+      }
+    });
+  }
+
+  void startStopwatch() {
+    setState(() {
+      stopispressed = false;
+      startispressed = false;
+    });
+    swatch.start();
+    starttimer();
+  }
+
+  void stopStopwatch() {
+    setState(() {
+      stopispressed = true;
+      resetispressed = false;
+    });
+    swatch.stop();
+  }
+
+  void resetStopwatch() {
+    setState(() {
+      startispressed = true;
+      resetispressed = true;
+    });
+    swatch.reset();
+    stopTimetodisplay = "00:00:00";
+  }
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         drawer: MyDrawer(),
         appBar: GradientAppBar(
-          title: Text('Break Page'),
+          title: Text('Work Page'),
           backgroundColorStart: Colors.cyan,
           backgroundColorEnd: Colors.green,
         ),
         body: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Colors.blue, Colors.green],
-          )),
-          width: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Expanded(
+                flex: 6,
                 child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0x888158888),
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(0.0),
-                        topLeft: Radius.circular(0.0)),
+                  alignment: Alignment.center,
+                  child: Text(
+                    stopTimetodisplay,
+                    style:
+                        TextStyle(fontSize: 50.0, fontWeight: FontWeight.w700),
                   ),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Press the button to work again',
-                            style: TextStyle(fontSize: 26.0),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 5.0, vertical: 100.0),
-                          child: RaisedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => TimerScreen()));
-                            },
-                            color: Color(0xffbb9bf),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100.0)),
-                            child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                "Work Time",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20.0),
-                              ),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          RaisedButton(
+                            onPressed: stopispressed ? null : stopStopwatch,
+                            color: Colors.red,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 40.0,
+                              vertical: 15.0,
+                            ),
+                            child: Text(
+                              "Stop",
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.white),
                             ),
                           ),
-                        ),
-                        SlideCountdownClock(
-                          duration: Duration(
-                            days: 0,
-                            hours: 0,
-                            minutes: 5,
-                          ),
-                          slideDirection: SlideDirection.Down,
-                          separator: ':',
-                          textStyle: TextStyle(
-                            fontSize: 36.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF00C853),
-                          ),
-                          separatorTextStyle: TextStyle(
-                            fontSize: 36.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          shouldShowDays: true,
-                          onDone: () => _key.currentState.showSnackBar(
-                            SnackBar(
-                              content: Text('CountDown Finished.'),
+                          RaisedButton(
+                            onPressed: resetispressed ? null : resetStopwatch,
+                            color: Colors.teal,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 40.0,
+                              vertical: 15.0,
+                            ),
+                            child: Text(
+                              "Reset",
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.white),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          RaisedButton(
+                            onPressed: startispressed ? startStopwatch : null,
+                            color: Colors.green,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 40.0,
+                              vertical: 15.0,
+                            ),
+                            child: Text(
+                              "Start",
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.white),
+                            ),
+                          ),
+                          RaisedButton(
+                            onPressed: () {},
+                            color: Colors.black,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 40.0,
+                              vertical: 15.0,
+                            ),
+                            child: Text(
+                              "Break",
+                              style: TextStyle(
+                                  fontSize: 20.0, color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
