@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/timer': (context) => TimerScreen(),
         '/break': (context) => Break(),
         '/forget': (context) => ForgetPassword(),
-        '/tasks': (context) => Task(),
+        '/tasks': (context) => TaskScreen(),
         '/addtasks': (context) => AddTask(),
         '/addprojects': (context) => AddProject(),
         '/projects': (context) => Project(),

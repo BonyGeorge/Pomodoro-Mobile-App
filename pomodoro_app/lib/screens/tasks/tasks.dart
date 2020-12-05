@@ -1,17 +1,21 @@
 // The Tasks Page.
 /* Here is all of the user daily tasks.*/
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/models/task.dart';
 import 'package:pomodoro_app/screens/tasks/add_task.dart';
 import 'package:pomodoro_app/ui/checkbox.dart';
 import 'package:pomodoro_app/ui/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-class Task extends StatefulWidget {
+class TaskScreen extends StatefulWidget {
   @override
-  _TaskState createState() => _TaskState();
+  _TaskScreenState createState() => _TaskScreenState();
 }
 
-class _TaskState extends State<Task> {
+class _TaskScreenState extends State<TaskScreen> {
+  Map<String, List> _usertasks;
+  List tasks = [];
+  Task task;
   List userTasks = ["Task 1", "Task 2", "Task 3", "Task 4", "Task 5"];
 
   @override
@@ -41,16 +45,36 @@ class _TaskState extends State<Task> {
               fontSize: 30,
               fontWeight: FontWeight.bold,
             )),
-        children: userTasks
-            .map(
-              (item) => ListTile(
-                leading: Icon(Icons.menu),
-                key: ValueKey("$item"),
-                title: Text("$item"),
-                trailing: MyCheckbox(),
-              ),
-            )
-            .toList(),
+        children: userTasks.isEmpty
+            ? LayoutBuilder(builder: (context, constraints) {
+                return Column(
+                  children: <Widget>[
+                    Text(
+                      'No Tasks yet!',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        height: constraints.maxHeight * 0.6,
+                        child: Image.asset(
+                          'assets/waiting.png',
+                          fit: BoxFit.cover,
+                        )),
+                  ],
+                );
+              })
+            : userTasks
+                .map(
+                  (item) => ListTile(
+                    leading: Icon(Icons.menu),
+                    key: ValueKey("$item"),
+                    title: Text("$item"),
+                    trailing: MyCheckbox(),
+                  ),
+                )
+                .toList(),
         onReorder: (start, current) {
           setState(() {
             _updateMyTasks(start, current);
@@ -82,5 +106,15 @@ class _TaskState extends State<Task> {
       }
       userTasks[current] = startItem;
     }
+  }
+
+  // Remove a chosen task.
+  void removeTask(TaskScreen task) {
+    //_usertasks.removeWhere((k, v) => k == v.indexOf(task.userID));
+  }
+
+  // Checks if the user have tasks or not.
+  String checkTasks() {
+    return _usertasks.isEmpty ? 'You have no tasks try to add more' : null;
   }
 }

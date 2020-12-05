@@ -10,7 +10,8 @@ class Task {
   bool isCompleted;
 
   // Constructor.
-  Task({
+  Task();
+  Task.fillConst({
     this.id,
     @required this.userID,
     @required this.title,
@@ -19,7 +20,6 @@ class Task {
     @required this.dueDate,
     @required this.isCompleted,
   });
-
   // Setters & Getters.
   String get iD => id;
   String get userId => userID;

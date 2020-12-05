@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/Profile/profile.dart';
+import 'package:pomodoro_app/screens/Timer/timer.dart';
 import '../register/signup.dart';
 import '../register/forget.dart';
 
@@ -85,7 +85,7 @@ class _State extends State<Signin> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ProfileApp()));
+                                          builder: (context) => TimerScreen()));
                                 }
                               });
                             },
