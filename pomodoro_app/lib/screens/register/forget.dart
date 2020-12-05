@@ -9,7 +9,7 @@ class ForgetPassword extends StatefulWidget {
 class _State extends State<ForgetPassword> {
   var _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
-  TextEditingController confirmEmail = TextEditingController();
+  TextEditingController pass = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +45,17 @@ class _State extends State<ForgetPassword> {
                           border: OutlineInputBorder(),
                           labelText: 'Email',
                         ),
-                        validator: (String value) {
-                          return value.isEmpty ? "This Entity is Empty" : null;
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return value.isEmpty
+                                ? "This Entity is Empty"
+                                : null;
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return 'Please enter a valid Email';
+                          }
+                          return null;
                         },
                       ),
                     ),
@@ -54,16 +63,26 @@ class _State extends State<ForgetPassword> {
                       height: 10.0,
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      padding: EdgeInsets.all(10),
                       child: TextFormField(
-                        obscureText: true,
-                        controller: confirmEmail,
+                        autofocus: false,
+                        controller: pass,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Confirm Email',
+                          labelText: 'New Password',
                         ),
-                        validator: (String value) {
-                          return value.isEmpty ? "This Entity is Empty" : null;
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return value.isEmpty
+                                ? "This Entity is Empty"
+                                : null;
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return 'Please enter a valid Email';
+                          }
+
+                          return null;
                         },
                       ),
                     ),
@@ -76,7 +95,7 @@ class _State extends State<ForgetPassword> {
                         child: RaisedButton(
                             onPressed: () {
                               print(emailController.text);
-                              print(confirmEmail.text);
+                              print(pass.text);
 
                               setState(() {
                                 if (_formKey.currentState.validate()) {

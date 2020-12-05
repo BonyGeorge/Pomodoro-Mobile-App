@@ -7,7 +7,7 @@ import 'dart:async';
 import './screens/register/login.dart';
 import './screens/register/signup.dart';
 import './screens/register/forget.dart';
-import 'landing_page.dart';
+import 'screens/landing_page.dart';
 import './screens/Profile/profile.dart';
 import './screens/Timer/timer.dart';
 import './screens/Timer/break_time.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/timer': (context) => TimerScreen(),
         '/break': (context) => Break(),
         '/forget': (context) => ForgetPassword(),
-        '/tasks': (context) => Task(),
+        '/tasks': (context) => TaskScreen(),
         '/addtasks': (context) => AddTask(),
         '/addprojects': (context) => AddProject(),
         '/projects': (context) => Project(),

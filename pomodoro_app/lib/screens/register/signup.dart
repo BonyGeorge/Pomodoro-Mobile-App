@@ -11,7 +11,6 @@ class _State extends State<Signup> {
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController repasswordController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController numController = TextEditingController();
 
@@ -93,6 +92,7 @@ class _State extends State<Signup> {
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
                         maxLength: 11,
+                        keyboardType: TextInputType.number,
                         controller: numController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
@@ -106,7 +106,8 @@ class _State extends State<Signup> {
                           }
                           if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
                                   .hasMatch(value) &&
-                              value != 11) {
+                              // ignore: unrelated_type_equality_checks
+                              value.length != 11) {
                             return 'Enter 11 No. only without letters';
                           }
                           return null;
@@ -125,25 +126,6 @@ class _State extends State<Signup> {
                           validator: (value) {
                             return value.isEmpty
                                 ? "This Entity is Empty"
-                                : null;
-                          }),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: TextFormField(
-                          obscureText: true,
-                          controller: repasswordController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Confirm Password',
-                          ),
-                          validator: (value) {
-                            return value.isEmpty
-                                ? "This Entity is Empty"
-                                : null;
                           }),
                     ),
                     SizedBox(
@@ -159,7 +141,6 @@ class _State extends State<Signup> {
                             print(emailController.text);
                             print(numController.text);
                             print(passwordController.text);
-                            print(repasswordController.text);
 
                             setState(() {
                               if (_formKey.currentState.validate()) {
@@ -168,8 +149,8 @@ class _State extends State<Signup> {
                                     MaterialPageRoute(
                                         builder: (context) => Signin()));
                                 if (_formKey.currentState.validate()) {
-                                  Scaffold.of(context).showSnackBar(
-                                      SnackBar(content: Text("Process")));
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text("Processing Data")));
                                 }
                               }
                             });
