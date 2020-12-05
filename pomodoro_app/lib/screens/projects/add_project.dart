@@ -39,6 +39,10 @@ class _AddProjectState extends State<AddProject> {
                         TextField(
                           decoration:
                               InputDecoration(labelText: 'Add Task name'),
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                              labelText: 'Add Task Description'),
 
                           onSubmitted: null,
                           // onChanged: (val) => amountInput = val,
