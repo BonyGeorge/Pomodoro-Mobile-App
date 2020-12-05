@@ -11,7 +11,6 @@ class _State extends State<Signup> {
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController repasswordController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController numController = TextEditingController();
 
@@ -131,24 +130,6 @@ class _State extends State<Signup> {
                           }),
                     ),
                     SizedBox(
-                      height: 10.0,
-                    ),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: TextFormField(
-                          obscureText: true,
-                          controller: repasswordController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Confirm Password',
-                          ),
-                          validator: (value) {
-                            return value.isEmpty
-                                ? "This Entity is Empty"
-                                : null;
-                          }),
-                    ),
-                    SizedBox(
                       height: 30.0,
                     ),
                     Container(
@@ -161,7 +142,6 @@ class _State extends State<Signup> {
                             print(emailController.text);
                             print(numController.text);
                             print(passwordController.text);
-                            print(repasswordController.text);
 
                             setState(() {
                               if (_formKey.currentState.validate()) {

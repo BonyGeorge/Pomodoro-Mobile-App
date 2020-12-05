@@ -9,7 +9,7 @@ class ForgetPassword extends StatefulWidget {
 class _State extends State<ForgetPassword> {
   var _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
-  TextEditingController confirmEmail = TextEditingController();
+  TextEditingController pass = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +66,10 @@ class _State extends State<ForgetPassword> {
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
                         autofocus: false,
-                        controller: confirmEmail,
+                        controller: pass,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Confirm Email',
+                          labelText: 'New Password',
                         ),
                         validator: (value) {
                           if (value.isEmpty) {
@@ -95,7 +95,7 @@ class _State extends State<ForgetPassword> {
                         child: RaisedButton(
                             onPressed: () {
                               print(emailController.text);
-                              print(confirmEmail.text);
+                              print(pass.text);
 
                               setState(() {
                                 if (_formKey.currentState.validate()) {
