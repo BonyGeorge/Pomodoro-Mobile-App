@@ -20,7 +20,7 @@ class _State extends State<Editprofile> {
     return Scaffold(
        drawer: MyDrawer(),
       appBar: GradientAppBar(
-
+        title: Text('Edit your Profile'),
         backgroundColorStart: Colors.cyan,
         backgroundColorEnd: Colors.green,
       ),
@@ -30,17 +30,6 @@ class _State extends State<Editprofile> {
                 padding: EdgeInsets.all(10),
                 child: ListView(
                   children: <Widget>[
-                    Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.all(30),
-                        child: Text(
-                          'Edit your profile!',
-                          style: TextStyle(
-                              color: Colors.green[300],
-                              fontWeight: FontWeight.w500,
-                              fontSize: 30),
-                        )),
                     Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(

@@ -1,5 +1,4 @@
-// The Tasks Page.
-/* Here is all of the user daily tasks.*/
+
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/projects/ProjectTask.dart';
 import 'package:pomodoro_app/ui/checkbox.dart';
