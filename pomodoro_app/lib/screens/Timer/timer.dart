@@ -36,17 +36,19 @@ class _TimerScreenState extends State<TimerScreen> {
           ":" +
           (swatch.elapsed.inSeconds % 60).toString().padLeft(2, "0");
 
-      if (stopTimetodisplay == "00:25:00") {
+      if (stopTimetodisplay == "00:00:10") {
         swatch.stop();
         stopTimetodisplay = "You finished the Work .. press Break button";
+        stopispressed = true;
       }
     });
   }
 
   void startStopwatch() {
     setState(() {
-      stopispressed = false;
-      startispressed = false;
+      stopispressed =
+          false; // already msh sha8ala f 5aletha heya el wa7eda ely tsht8l
+      startispressed = false; // 3shan y2fl el start button mysht8lsh
     });
     swatch.start();
     starttimer();

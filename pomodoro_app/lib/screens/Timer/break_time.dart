@@ -37,9 +37,10 @@ class _BreakState extends State<Break> {
           ":" +
           (swatch.elapsed.inSeconds % 60).toString().padLeft(2, "0");
 
-      if (stopTimetodisplay == "00:01:00") {
+      if (stopTimetodisplay == "00:00:10") {
         swatch.stop();
         stopTimetodisplay = "You finished the break .. press work button";
+        stopispressed = true;
       }
     });
   }
