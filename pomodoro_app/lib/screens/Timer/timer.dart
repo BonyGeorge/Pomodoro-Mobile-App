@@ -36,9 +36,9 @@ class _TimerScreenState extends State<TimerScreen> {
           ":" +
           (swatch.elapsed.inSeconds % 60).toString().padLeft(2, "0");
 
-      if (stopTimetodisplay == "00:00:10") {
+      if (stopTimetodisplay == "00:25:00") {
         swatch.stop();
-        stopTimetodisplay = "You finished the Work .. press Break button";
+        stopTimetodisplay = "You finished the Work .. Press Break button";
         stopispressed = true;
       }
     });

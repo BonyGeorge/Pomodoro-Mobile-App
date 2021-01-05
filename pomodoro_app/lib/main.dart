@@ -10,10 +10,10 @@ import './screens/register/forget.dart';
 import 'screens/landing_page.dart';
 import './screens/Profile/profile.dart';
 import './screens/Timer/timer.dart';
-import './screens/Timer/break_time.dart';
+import './screens/Timer/break_time.dart';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 import './screens/tasks/tasks.dart';
 
-void main() {
+void main() {                                                                                                                                                                                                                                                                                                                                                                         
   runApp(MyApp());
 }
 
