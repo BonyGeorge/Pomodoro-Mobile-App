@@ -42,9 +42,7 @@ class _State extends State<Signin> {
                           labelText: 'User Name',
                         ),
                         validator: (String value) {
-                          return value.isEmpty
-                              ? "This Username is Empty"
-                              : null;
+                          return value.isEmpty ? "The Username is Empty" : null;
                         },
                       ),
                     ),
@@ -58,9 +56,7 @@ class _State extends State<Signin> {
                           labelText: 'Password',
                         ),
                         validator: (String value) {
-                          return value.isEmpty
-                              ? "This Password is Empty"
-                              : null;
+                          return value.isEmpty ? "The Password is Empty" : null;
                         },
                       ),
                     ),
