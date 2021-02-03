@@ -45,7 +45,9 @@ class _State extends State<Signup> {
                           labelText: 'Full Name',
                         ),
                         validator: (value) {
-                          return value.isEmpty ? "This Entity is Empty" : null;
+                          return value.isEmpty
+                              ? "The name field is Empty"
+                              : null;
                         },
                         onSaved: (value) {
                           print("Saved form $value");
@@ -62,7 +64,9 @@ class _State extends State<Signup> {
                           labelText: 'Username',
                         ),
                         validator: (value) {
-                          return value.isEmpty ? "This Entity is Empty" : null;
+                          return value.isEmpty
+                              ? "The Username field is Empty"
+                              : null;
                         },
                       ),
                     ),
@@ -76,9 +80,7 @@ class _State extends State<Signup> {
                         ),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return value.isEmpty
-                                ? "This Entity is Empty"
-                                : null;
+                            return value.isEmpty ? "Them Email is Empty" : null;
                           }
                           if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                               .hasMatch(value)) {
@@ -101,7 +103,7 @@ class _State extends State<Signup> {
                         validator: (value) {
                           if (value.isEmpty) {
                             return value.isEmpty
-                                ? "This Entity is Empty"
+                                ? "The Mobile field is Empty"
                                 : null;
                           }
                           if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
@@ -125,7 +127,7 @@ class _State extends State<Signup> {
                           ),
                           validator: (value) {
                             return value.isEmpty
-                                ? "This Entity is Empty"
+                                ? "The Passwrod field is Empty"
                                 : null;
                           }),
                     ),
