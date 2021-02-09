@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/projects/ProjectTask.dart';
-import 'package:pomodoro_app/ui/checkbox.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
+//import 'package:pomodoro_app/widgets/checkbox.dart';
+import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class ProjectT extends StatefulWidget {
@@ -46,7 +45,7 @@ class _TaskState extends State<ProjectT> {
                 leading: Icon(Icons.menu),
                 key: ValueKey("$item"),
                 title: Text("$item"),
-                trailing: MyCheckbox(),
+                //trailing: MyCheckbox(),
               ),
             )
             .toList(),

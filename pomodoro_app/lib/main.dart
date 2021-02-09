@@ -1,8 +1,9 @@
-// The Main frame.
+// The Main of running our code.
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/projects/add_project.dart';
 import 'package:pomodoro_app/screens/projects/projects.dart';
-import 'package:pomodoro_app/screens/tasks/add_task.dart';
+import 'package:pomodoro_app/screens/tasks/tasks_history.dart';
+import 'package:pomodoro_app/widgets/add_task.dart';
 import 'dart:async';
 import './screens/register/login.dart';
 import './screens/register/signup.dart';
@@ -10,10 +11,12 @@ import './screens/register/forget.dart';
 import 'screens/landing_page.dart';
 import './screens/Profile/profile.dart';
 import './screens/Timer/timer.dart';
-import './screens/Timer/break_time.dart';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+import './screens/Timer/break_time.dart';
 import './screens/tasks/tasks.dart';
+import 'package:pomodoro_app/providers/tasks.dart';
+import 'package:provider/provider.dart';
 
-void main() {                                                                                                                                                                                                                                                                                                                                                                         
+void main() {
   runApp(MyApp());
 }
 
@@ -21,26 +24,30 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pomodoro App',
-      initialRoute: '/',
-      routes: {
-        '/login': (context) => Signin(),
-        '/signup': (context) => Signup(),
-        '/profile': (context) => ProfileApp(),
-        '/timer': (context) => TimerScreen(),
-        '/break': (context) => Break(),
-        '/forget': (context) => ForgetPassword(),
-        '/tasks': (context) => TaskScreen(),
-        '/addtasks': (context) => AddTask(),
-        '/addprojects': (context) => AddProject(),
-        '/projects': (context) => Project(),
-      },
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return ChangeNotifierProvider(
+      create: (_) => TaskProvider(),
+      child: MaterialApp(
+        title: 'Pomodoro App',
+        initialRoute: '/',
+        routes: {
+          '/login': (context) => Signin(),
+          '/signup': (context) => Signup(),
+          '/profile': (context) => ProfileApp(),
+          '/timer': (context) => TimerScreen(),
+          '/break': (context) => Break(),
+          '/forget': (context) => ForgetPassword(),
+          '/tasks': (context) => TaskScreen(),
+          '/addtasks': (context) => AddNewTask(),
+          '/addprojects': (context) => AddProject(),
+          '/projects': (context) => Project(),
+          HistoryScreen.routeName: (ctx) => HistoryScreen(),
+        },
+        theme: ThemeData(
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            fontFamily: 'Lato'),
+        home: MyHomePage(),
+        debugShowCheckedModeBanner: false,
       ),
-      home: MyHomePage(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

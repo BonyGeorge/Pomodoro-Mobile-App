@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/Profile/editprofile.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
+import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class ProfileApp extends StatelessWidget {

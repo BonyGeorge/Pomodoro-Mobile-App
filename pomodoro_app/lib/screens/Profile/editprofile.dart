@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/Profile/profile.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
+import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class Editprofile extends StatefulWidget {
@@ -18,12 +18,12 @@ class _State extends State<Editprofile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       drawer: MyDrawer(),
-      appBar: GradientAppBar(
-        title: Text('Edit your Profile'),
-        backgroundColorStart: Colors.cyan,
-        backgroundColorEnd: Colors.green,
-      ),
+        drawer: MyDrawer(),
+        appBar: GradientAppBar(
+          title: Text('Edit your Profile'),
+          backgroundColorStart: Colors.cyan,
+          backgroundColorEnd: Colors.green,
+        ),
         body: Form(
             key: _formKey,
             child: Padding(
@@ -91,7 +91,6 @@ class _State extends State<Editprofile> {
                         },
                       ),
                     ),
-                   
                     SizedBox(
                       height: 30.0,
                     ),

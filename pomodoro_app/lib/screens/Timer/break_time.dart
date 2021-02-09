@@ -1,7 +1,7 @@
 // The Timer Screen.
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
+import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:pomodoro_app/screens/Timer/timer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:slide_countdown_clock/slide_countdown_clock.dart';

@@ -1,26 +1,22 @@
 // The Tasks Page.
 /* Here is all of the user daily tasks.*/
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/models/task.dart';
-import 'package:pomodoro_app/screens/tasks/add_task.dart';
-import 'package:pomodoro_app/ui/checkbox.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
+import 'package:pomodoro_app/screens/tasks/tasks_history.dart';
+import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:provider/provider.dart';
+import 'package:pomodoro_app/providers/tasks.dart';
+import 'package:pomodoro_app/widgets/task_list.dart';
+import 'package:pomodoro_app/widgets/add_task.dart';
+import 'package:pomodoro_app/widgets/badge.dart';
 
-class TaskScreen extends StatefulWidget {
-  @override
-  _TaskScreenState createState() => _TaskScreenState();
-}
-
-class _TaskScreenState extends State<TaskScreen> {
-  Map<String, List> _usertasks;
-  List tasks = [];
-  Task task;
-  List userTasks = ["Task 1", "Task 2", "Task 3", "Task 4", "Task 5"];
-
+class TaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final taskList = Provider.of<TaskProvider>(context).itemsList;
+    //final task = Provider.of<TaskProvider>(context);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: GradientAppBar(
         title: Text('My Tasks'),
         backgroundColorStart: Colors.cyan,
@@ -29,92 +25,58 @@ class _TaskScreenState extends State<TaskScreen> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => AddTask()));
+              showModalBottomSheet(
+                context: context,
+                builder: (_) => AddNewTask(isEditMode: false),
+              );
             },
+          ),
+          Consumer<TaskProvider>(
+            builder: (_, task, child) => Badge(
+              child: child,
+              value: task.itemCount.toString(),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.assignment_turned_in_rounded),
+              onPressed: () {
+                Navigator.of(context).pushNamed(HistoryScreen.routeName);
+              },
+            ),
           ),
         ],
       ),
       drawer: MyDrawer(),
-      body: ReorderableListView(
-        padding: EdgeInsets.only(
-          top: 40,
-        ),
-        header: Text("Your Tasks",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            )),
-        children: userTasks.isEmpty
-            ? LayoutBuilder(builder: (context, constraints) {
-                return Column(
-                  children: <Widget>[
-                    Text(
-                      'No Tasks yet!',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                        height: constraints.maxHeight * 0.6,
-                        child: Image.asset(
-                          'assets/waiting.png',
-                          fit: BoxFit.cover,
-                        )),
-                  ],
-                );
-              })
-            : userTasks
-                .map(
-                  (item) => ListTile(
-                    leading: Icon(Icons.menu),
-                    key: ValueKey("$item"),
-                    title: Text("$item"),
-                    trailing: MyCheckbox(),
+      body: taskList.length > 0
+          ? ListView.builder(
+              itemCount: taskList.length,
+              itemBuilder: (context, index) {
+                return ListItem(taskList[index]);
+              },
+            )
+          : LayoutBuilder(
+              builder: (ctx, constraints) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: constraints.maxHeight * 0.5,
+                        child: Image.asset('assets/images/nodata.png',
+                            fit: BoxFit.cover),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        'No tasks added yet...',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    ],
                   ),
-                )
-                .toList(),
-        onReorder: (start, current) {
-          setState(() {
-            _updateMyTasks(start, current);
-          });
-        },
-      ),
+                );
+              },
+            ),
     );
-  }
-
-  void _updateMyTasks(start, current) {
-    // Dragging the Task from top to bottom.
-    if (start < current) {
-      int end = current - 1;
-      String startItem = userTasks[start];
-      int i = 0;
-      int local = start;
-      do {
-        userTasks[local] = userTasks[++local];
-        i++;
-      } while (i < end - start);
-      userTasks[end] = startItem;
-    }
-
-    // Dragging the Task from bottom to top.
-    else if (start > current) {
-      String startItem = userTasks[start];
-      for (int i = start; i > current; i--) {
-        userTasks[i] = userTasks[i - 1];
-      }
-      userTasks[current] = startItem;
-    }
-  }
-
-  // Remove a chosen task.
-  void removeTask(TaskScreen task) {
-    //_usertasks.removeWhere((k, v) => k == v.indexOf(task.userID));
-  }
-
-  // Checks if the user have tasks or not.
-  String checkTasks() {
-    return _usertasks.isEmpty ? 'You have no tasks try to add more' : null;
   }
 }
