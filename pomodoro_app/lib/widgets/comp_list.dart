@@ -19,7 +19,7 @@ class _CompItemState extends State<CompItem> {
     void _deleteTask() {
       setState(() {
         Provider.of<TaskProvider>(context, listen: false)
-            .removeTask(widget.task.id);
+            .removeHistTask(widget.task.id);
       });
     }
 

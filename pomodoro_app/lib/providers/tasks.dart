@@ -86,6 +86,11 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void removeHistTask(String id) {
+    _completedList.removeWhere((task) => task.id == id);
+    notifyListeners();
+  }
+
   void completeTask(String id) {
     int index = _toDoList.indexWhere((task) => task.id == id);
     _toDoList[index].isCompleted = !_toDoList[index].isCompleted;
