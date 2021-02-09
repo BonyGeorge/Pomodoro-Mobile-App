@@ -47,9 +47,7 @@ class _State extends State<ForgetPassword> {
                         ),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return value.isEmpty
-                                ? "This Entity is Empty"
-                                : null;
+                            return value.isEmpty ? "The Email is Empty" : null;
                           }
                           if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                               .hasMatch(value)) {
@@ -73,9 +71,7 @@ class _State extends State<ForgetPassword> {
                         ),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return value.isEmpty
-                                ? "This Entity is Empty"
-                                : null;
+                            return value.isEmpty ? "The Entity is Empty" : null;
                           }
                           if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                               .hasMatch(value)) {
