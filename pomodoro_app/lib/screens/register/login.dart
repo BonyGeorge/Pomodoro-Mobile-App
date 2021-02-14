@@ -61,6 +61,10 @@ class _State extends State<Signin> {
                       ),
                     ),
                     FlatButton(
+                      textColor: Colors.green[200],
+                      child: Text('Forgot Password',
+                          style: TextStyle(fontSize: 50)),
+
                       onPressed: () {
                         //signup screen
                         Navigator.pushReplacement(
@@ -68,10 +72,7 @@ class _State extends State<Signin> {
                             MaterialPageRoute(
                                 builder: (context) => ForgetPassword()));
                       },
-                      //forgot password screen
-
-                      textColor: Colors.green[300],
-                      child: Text('Forgot Password'),
+                      //fo
                     ),
                     Container(
                         height: 50,
