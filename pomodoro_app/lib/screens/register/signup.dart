@@ -222,49 +222,6 @@ class _State extends State<Signup> {
                                   maxWidth: 390.0, minHeight: 550.0),
                               alignment: Alignment.center,
                               child: Text(
-                                " Sign",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25.0,
-                                    fontWeight: FontWeight.w300),
-                              ),
-                            ),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    Container(
-                      height: 50,
-                      width: 250.00,
-                      child: RaisedButton(
-                          onPressed: () {
-                            //signup screen
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Signin()));
-                          },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(100.0)),
-                          elevation: 0.0,
-                          padding: EdgeInsets.all(0.0),
-                          child: Ink(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.centerRight,
-                                  end: Alignment.centerLeft,
-                                  colors: [
-                                    Colors.greenAccent,
-                                    Colors.lightGreenAccent
-                                  ]),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            child: Container(
-                              constraints: BoxConstraints(
-                                  maxWidth: 390.0, minHeight: 550.0),
-                              alignment: Alignment.center,
-                              child: Text(
                                 " Sign In ",
                                 style: TextStyle(
                                     color: Colors.white,
