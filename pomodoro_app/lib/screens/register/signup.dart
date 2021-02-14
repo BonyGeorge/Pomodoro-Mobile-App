@@ -200,7 +200,7 @@ class _State extends State<Signup> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Signin()));
+                                    builder: (context) => project1()));
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100.0)),
