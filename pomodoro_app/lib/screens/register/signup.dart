@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/register/login.dart';
-import 'package:pomodoro_app/screens/projects/project1.dart';
 
 class Signup extends StatefulWidget {
   @override
