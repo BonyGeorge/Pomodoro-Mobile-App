@@ -101,8 +101,7 @@ class _State extends State<ForgetPassword> {
                                           builder: (context) => ProfileApp()));
                                 }
                                 if (_formKey.currentState.validate()) {
-                                  Scaffold.of(context).showSnackBar(
-                                      SnackBar(content: Text("Process")));
+                                  print("Process");
                                 }
                               });
                             },
