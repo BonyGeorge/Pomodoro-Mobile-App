@@ -8,6 +8,14 @@ import 'package:pomodoro_app/screens/projects/projects.dart';
 import 'package:pomodoro_app/screens/tasks/tasks_history.dart';
 import 'package:pomodoro_app/widgets/add_task.dart';
 import 'package:provider/provider.dart';
+import 'screens/register/signup.dart';
+import 'screens/register/forget.dart';
+import 'screens/register/login.dart';
+import 'screens/landing_page.dart';
+import './screens/Profile/profile.dart';
+import './screens/Timer/timer.dart';
+import './screens/Timer/break_time.dart';
+import './screens/tasks/tasks.dart';
 
 void main() {
   runApp(MyApp());
