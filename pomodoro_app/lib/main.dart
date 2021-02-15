@@ -1,19 +1,12 @@
 // The Main of running our code.
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/providers/tasks.dart';
 import 'package:pomodoro_app/screens/projects/add_project.dart';
 import 'package:pomodoro_app/screens/projects/projects.dart';
 import 'package:pomodoro_app/screens/tasks/tasks_history.dart';
 import 'package:pomodoro_app/widgets/add_task.dart';
-import 'dart:async';
-import './screens/register/login.dart';
-import './screens/register/signup.dart';
-import './screens/register/forget.dart';
-import 'screens/landing_page.dart';
-import './screens/Profile/profile.dart';
-import './screens/Timer/timer.dart';
-import './screens/Timer/break_time.dart';
-import './screens/tasks/tasks.dart';
-import 'package:pomodoro_app/providers/tasks.dart';
 import 'package:provider/provider.dart';
 
 void main() {
