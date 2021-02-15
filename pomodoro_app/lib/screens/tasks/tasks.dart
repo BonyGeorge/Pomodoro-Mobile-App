@@ -16,7 +16,6 @@ class TaskScreen extends StatelessWidget {
     final taskList = Provider.of<TaskProvider>(context).itemsList;
     //final task = Provider.of<TaskProvider>(context);
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       appBar: GradientAppBar(
         title: Text('My Tasks'),
         backgroundColorStart: Colors.cyan,
