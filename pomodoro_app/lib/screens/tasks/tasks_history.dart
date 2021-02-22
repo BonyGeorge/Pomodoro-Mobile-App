@@ -19,6 +19,7 @@ class HistoryScreen extends StatelessWidget {
         title: Text('My Completed Tasks'),
         backgroundColorStart: Colors.cyan,
         backgroundColorEnd: Colors.green,
+        centerTitle: true,
       ),
       body: tasks.length > 0
           ? ListView.builder(

@@ -20,6 +20,7 @@ class TaskScreen extends StatelessWidget {
         title: Text('My Tasks'),
         backgroundColorStart: Colors.cyan,
         backgroundColorEnd: Colors.green,
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
