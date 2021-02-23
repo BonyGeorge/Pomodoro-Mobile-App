@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/register/login.dart';
 
 class Signup extends StatefulWidget {
+  static const routeName = '/signup';
+
   @override
   _State createState() => _State();
 }

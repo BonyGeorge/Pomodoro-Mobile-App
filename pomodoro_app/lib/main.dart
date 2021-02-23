@@ -7,7 +7,6 @@ import 'package:pomodoro_app/screens/about/about_promodoro.dart';
 import 'package:pomodoro_app/screens/projects/add_project.dart';
 import 'package:pomodoro_app/screens/projects/projects.dart';
 import 'package:pomodoro_app/screens/tasks/tasks_history.dart';
-import 'package:pomodoro_app/widgets/add_task.dart';
 import 'package:provider/provider.dart';
 import 'screens/register/signup.dart';
 import 'screens/register/forget.dart';
@@ -32,15 +31,14 @@ class MyApp extends StatelessWidget {
         title: 'Pomodoro App',
         initialRoute: '/',
         routes: {
-          '/login': (context) => Signin(),
-          '/signup': (context) => Signup(),
-          '/profile': (context) => ProfileApp(),
-          '/timer': (context) => TimerScreen(),
-          '/break': (context) => Break(),
-          '/forget': (context) => ForgetPassword(),
-          '/addtasks': (context) => AddNewTask(),
-          '/addprojects': (context) => AddProject(),
-          '/projects': (context) => Project(),
+          Signin.routeName: (ctx) => Signin(),
+          Signup.routeName: (ctx) => Signup(),
+          ProfileApp.routeName: (ctx) => ProfileApp(),
+          '/timer': (ctx) => TimerScreen(),
+          '/break': (ctx) => Break(),
+          ForgetPassword.routeName: (ctx) => ForgetPassword(),
+          '/addprojects': (ctx) => AddProject(),
+          Project.routeName: (ctx) => Project(),
           TaskScreen.routeName: (ctx) => TaskScreen(),
           HistoryScreen.routeName: (ctx) => HistoryScreen(),
           AboutScreen.routeName: (ctx) => AboutScreen(),

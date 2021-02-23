@@ -4,7 +4,6 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class AddPTask extends StatefulWidget {
   AddPTask({Key key}) : super(key: key);
-
   @override
   _AddPTaskState createState() => _AddPTaskState();
 }

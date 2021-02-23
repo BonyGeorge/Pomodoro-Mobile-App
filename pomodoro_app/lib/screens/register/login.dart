@@ -4,6 +4,8 @@ import '../register/signup.dart';
 import '../register/forget.dart';
 
 class Signin extends StatefulWidget {
+  static const routeName = '/login';
+
   @override
   _State createState() => _State();
 }

@@ -8,6 +8,8 @@ import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class Project extends StatefulWidget {
+  static const routeName = '/projects';
+
   @override
   _ProjectState createState() => _ProjectState();
 }

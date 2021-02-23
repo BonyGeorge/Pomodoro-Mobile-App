@@ -4,6 +4,7 @@ import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class ProfileApp extends StatelessWidget {
+  static const routeName = '/profile';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
