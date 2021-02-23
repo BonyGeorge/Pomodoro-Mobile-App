@@ -1,6 +1,8 @@
 // The Drawer of our App.
 /* Here is the drawer where the user can navigate to any screen he wants.*/
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/screens/about/about_promodoro.dart';
+import 'package:pomodoro_app/screens/tasks/tasks.dart';
 
 /* The Drawer Structure. */
 class MyDrawer extends StatelessWidget {
@@ -46,7 +48,7 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(Icons.assignment),
             title: Text('My Tasks'),
             onTap: () {
-              Navigator.pushNamed(context, '/tasks');
+              Navigator.of(context).pushNamed(TaskScreen.routeName);
             },
           ),
           ListTile(
@@ -54,6 +56,13 @@ class MyDrawer extends StatelessWidget {
             title: Text('My Projects'),
             onTap: () {
               Navigator.pushNamed(context, '/projects');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.help),
+            title: Text('About Pomodoro'),
+            onTap: () {
+              Navigator.of(context).pushNamed(AboutScreen.routeName);
             },
           ),
         ],

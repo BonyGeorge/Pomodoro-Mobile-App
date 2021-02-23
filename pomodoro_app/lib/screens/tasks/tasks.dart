@@ -11,6 +11,8 @@ import 'package:pomodoro_app/widgets/add_task.dart';
 import 'package:pomodoro_app/widgets/badge.dart';
 
 class TaskScreen extends StatelessWidget {
+  static const routeName = '/tasks';
+
   @override
   Widget build(BuildContext context) {
     final taskList = Provider.of<TaskProvider>(context).itemsList;

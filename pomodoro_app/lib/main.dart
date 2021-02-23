@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/providers/tasks.dart';
+import 'package:pomodoro_app/screens/about/about_promodoro.dart';
 import 'package:pomodoro_app/screens/projects/add_project.dart';
 import 'package:pomodoro_app/screens/projects/projects.dart';
 import 'package:pomodoro_app/screens/tasks/tasks_history.dart';
@@ -37,11 +38,12 @@ class MyApp extends StatelessWidget {
           '/timer': (context) => TimerScreen(),
           '/break': (context) => Break(),
           '/forget': (context) => ForgetPassword(),
-          '/tasks': (context) => TaskScreen(),
           '/addtasks': (context) => AddNewTask(),
           '/addprojects': (context) => AddProject(),
           '/projects': (context) => Project(),
+          TaskScreen.routeName: (ctx) => TaskScreen(),
           HistoryScreen.routeName: (ctx) => HistoryScreen(),
+          AboutScreen.routeName: (ctx) => AboutScreen(),
         },
         theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,
