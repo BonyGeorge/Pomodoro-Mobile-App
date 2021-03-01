@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/Profile/profile.dart';
 
 class ForgetPassword extends StatefulWidget {
+  static const routeName = '/forget';
+
   @override
   _State createState() => _State();
 }
@@ -101,8 +103,7 @@ class _State extends State<ForgetPassword> {
                                           builder: (context) => ProfileApp()));
                                 }
                                 if (_formKey.currentState.validate()) {
-                                  Scaffold.of(context).showSnackBar(
-                                      SnackBar(content: Text("Process")));
+                                  print("Process");
                                 }
                               });
                             },

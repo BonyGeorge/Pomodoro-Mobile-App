@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
+import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class AddPTask extends StatefulWidget {
   AddPTask({Key key}) : super(key: key);
-
   @override
   _AddPTaskState createState() => _AddPTaskState();
 }

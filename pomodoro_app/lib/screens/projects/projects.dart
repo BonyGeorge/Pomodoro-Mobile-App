@@ -3,11 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/projects/Project1.dart';
 import 'package:pomodoro_app/screens/projects/add_project.dart';
-import 'package:pomodoro_app/ui/checkbox.dart';
-import 'package:pomodoro_app/ui/drawer.dart';
+//import 'package:pomodoro_app/widgets/checkbox.dart';
+import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class Project extends StatefulWidget {
+  static const routeName = '/projects';
+
   @override
   _ProjectState createState() => _ProjectState();
 }
@@ -47,8 +49,7 @@ class _ProjectState extends State<Project> {
               (item) => ListTile(
                 key: ValueKey("$item"),
                 title: Text("$item"),
-                trailing: MyCheckbox(),
-                
+                // trailing: MyCheckbox(),
               ),
             )
             .toList(),
@@ -60,8 +61,8 @@ class _ProjectState extends State<Project> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => ProjectT()));
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => ProjectT()));
         },
         label: Text('View'),
         icon: Icon(Icons.search),
