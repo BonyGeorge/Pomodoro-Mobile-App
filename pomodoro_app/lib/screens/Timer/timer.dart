@@ -1,10 +1,8 @@
 // The Timer Screen.
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/Timer/break_time.dart';
 import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 import 'package:intl/intl.dart';
 
 class TimerScreen extends StatefulWidget {
@@ -24,7 +22,6 @@ class _TimerScreenState extends State<TimerScreen> {
   bool _canShowButton = true;
   bool _canShowReset = false;
   bool _canShowPause = false;
-  bool _canShowResume = false;
 
   bool state = false;
 
