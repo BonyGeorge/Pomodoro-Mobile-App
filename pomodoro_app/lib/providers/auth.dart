@@ -60,10 +60,9 @@ class Auth with ChangeNotifier {
     // conpassword: user.conpassword,
     // );
 
-    void signOut() {
-      FirebaseAuth.instance.signOut();
+    void signOut() async {
+      await FirebaseAuth.instance.signOut();
       FirebaseUser user = FirebaseAuth.instance.currentUser;
-
       runApp(new MaterialApp(
         home: new TimerScreen(),
       ));
