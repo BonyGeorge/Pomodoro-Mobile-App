@@ -15,7 +15,6 @@ import 'screens/register/change.dart';
 import 'screens/landing_page.dart';
 import './screens/Profile/profile.dart';
 import './screens/Timer/timer.dart';
-import './screens/Timer/break_time.dart';
 import './screens/tasks/tasks.dart';
 
 void main() {
@@ -39,7 +38,6 @@ class MyApp extends StatelessWidget {
           Change.routeName: (ctx) => Change(),
           ProfileApp.routeName: (ctx) => ProfileApp(),
           '/timer': (ctx) => TimerScreen(),
-          '/break': (ctx) => Break(),
           ForgetPassword.routeName: (ctx) => ForgetPassword(),
           '/addprojects': (ctx) => AddProject(),
           Project.routeName: (ctx) => Project(),
