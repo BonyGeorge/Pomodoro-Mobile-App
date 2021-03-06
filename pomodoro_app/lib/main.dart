@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'screens/register/signup.dart';
 import 'screens/register/forget.dart';
 import 'screens/register/login.dart';
+import 'screens/register/change.dart';
 import 'screens/landing_page.dart';
 import './screens/Profile/profile.dart';
 import './screens/Timer/timer.dart';
@@ -18,6 +19,8 @@ import './screens/Timer/break_time.dart';
 import './screens/tasks/tasks.dart';
 
 void main() {
+  /* WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();*/
   runApp(MyApp());
 }
 
@@ -33,6 +36,7 @@ class MyApp extends StatelessWidget {
         routes: {
           Signin.routeName: (ctx) => Signin(),
           Signup.routeName: (ctx) => Signup(),
+          Change.routeName: (ctx) => Change(),
           ProfileApp.routeName: (ctx) => ProfileApp(),
           '/timer': (ctx) => TimerScreen(),
           '/break': (ctx) => Break(),
@@ -67,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Timer(
         Duration(seconds: 5),
         () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Signup())));
+            context, MaterialPageRoute(builder: (context) => TimerScreen())));
   }
 
   @override

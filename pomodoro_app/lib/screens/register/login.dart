@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/Timer/timer.dart';
 import '../register/signup.dart';
 import '../register/forget.dart';
+import '../register/change.dart';
 
 class Signin extends StatefulWidget {
   static const routeName = '/login';
@@ -12,7 +13,7 @@ class Signin extends StatefulWidget {
 
 class _State extends State<Signin> {
   var _formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -28,7 +29,7 @@ class _State extends State<Signin> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Welcome Back',
+                          'Welcome Login',
                           style: TextStyle(
                               color: Colors.green[300],
                               fontWeight: FontWeight.w500,
@@ -37,14 +38,20 @@ class _State extends State<Signin> {
                     Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
-                        autofocus: true,
-                        controller: nameController,
+                        controller: emailController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'User Name',
+                          labelText: 'E-mail',
                         ),
-                        validator: (String value) {
-                          return value.isEmpty ? "The Username is Empty" : null;
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return value.isEmpty ? "Them Email is Empty" : null;
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return 'Please enter a valid Email';
+                          }
+                          return null;
                         },
                       ),
                     ),
@@ -53,19 +60,27 @@ class _State extends State<Signin> {
                       child: TextFormField(
                         obscureText: true,
                         controller: passwordController,
+                        maxLength: 37,
                         decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Password',
-                        ),
+                            border: OutlineInputBorder(),
+                            labelText: 'Password',
+                            hintText: "**********"),
                         validator: (String value) {
-                          return value.isEmpty ? "The Password is Empty" : null;
+                          if (value.isEmpty) {
+                            return "The Passwrod field is Empty";
+                          } else if (value.length < 8) {
+                            return "Password must be longer than 8 characters";
+                          } else {
+                            return null;
+                          }
                         },
                       ),
                     ),
                     FlatButton(
                       textColor: Colors.green[200],
+                      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
                       child: Text('Forgot Password',
-                          style: TextStyle(fontSize: 50)),
+                          style: TextStyle(fontSize: 40)),
 
                       onPressed: () {
                         //signup screen
@@ -81,7 +96,7 @@ class _State extends State<Signin> {
                         width: 250.00,
                         child: RaisedButton(
                             onPressed: () {
-                              print(nameController.text);
+                              print(emailController.text);
                               print(passwordController.text);
                               setState(() {
                                 if (_formKey.currentState.validate()) {
@@ -135,6 +150,31 @@ class _State extends State<Signin> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Signup()));
+                            if (_formKey.currentState.validate()) {
+                              Scaffold.of(context).showSnackBar(
+                                  SnackBar(content: Text("Process")));
+                            }
+                          },
+                        )
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    )),
+                    Container(
+                        child: Row(
+                      children: <Widget>[
+                        Text("Do You wanna "),
+                        FlatButton(
+                          textColor: Colors.green[200],
+                          child: Text(
+                            'Change password ?',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          onPressed: () {
+                            //signup screen
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Change()));
                             if (_formKey.currentState.validate()) {
                               Scaffold.of(context).showSnackBar(
                                   SnackBar(content: Text("Process")));
