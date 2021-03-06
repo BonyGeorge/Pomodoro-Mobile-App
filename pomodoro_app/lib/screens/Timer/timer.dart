@@ -6,6 +6,7 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:intl/intl.dart';
 
 class TimerScreen extends StatefulWidget {
+  static const routeName = '/timer';
   TimerScreen({Key key}) : super(key: key);
 
   @override

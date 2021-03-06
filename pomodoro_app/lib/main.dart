@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           Signup.routeName: (ctx) => Signup(),
           Change.routeName: (ctx) => Change(),
           ProfileApp.routeName: (ctx) => ProfileApp(),
-          '/timer': (ctx) => TimerScreen(),
+          TimerScreen.routeName: (ctx) => TimerScreen(),
           ForgetPassword.routeName: (ctx) => ForgetPassword(),
           '/addprojects': (ctx) => AddProject(),
           Project.routeName: (ctx) => Project(),
@@ -66,10 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    Timer(
-        Duration(seconds: 5),
-        () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => TimerScreen())));
+    Timer(Duration(seconds: 5),
+        () => Navigator.pushNamed(context, Signup.routeName));
   }
 
   @override
