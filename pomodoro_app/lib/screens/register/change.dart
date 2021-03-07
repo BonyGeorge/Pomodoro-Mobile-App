@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/Profile/profile.dart';
 import 'package:pomodoro_app/screens/register/login.dart';
+import 'package:pomodoro_app/screens/Profile/profile.dart';
 
-class ForgetPassword extends StatefulWidget {
-  static const routeName = '/forget';
+class Change extends StatefulWidget {
+  static const routeName = '/change';
 
   @override
   _State createState() => _State();
 }
 
-class _State extends State<ForgetPassword> {
+class _State extends State<Change> {
   var _formKey = GlobalKey<FormState>();
+  var newpass;
   TextEditingController userController = TextEditingController();
-  TextEditingController pass = TextEditingController();
+  TextEditingController oldController = TextEditingController();
+  TextEditingController newController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +25,11 @@ class _State extends State<ForgetPassword> {
                 padding: EdgeInsets.all(10),
                 child: ListView(
                   children: <Widget>[
-                    SizedBox(
-                      height: 40.0,
-                    ),
                     Container(
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Reset Password',
+                          'Change Password Page',
                           style: TextStyle(
                               color: Colors.green[300],
                               fontWeight: FontWeight.w500,
@@ -45,7 +44,7 @@ class _State extends State<ForgetPassword> {
                           border: OutlineInputBorder(),
                           labelText: 'Username',
                         ),
-                        validator: (String value) {
+                        validator: (value) {
                           if (value.length < 5) {
                             return "Please enter a valid Username.";
                           } else if (value.isEmpty) {
@@ -57,30 +56,52 @@ class _State extends State<ForgetPassword> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextFormField(
-                        autofocus: false,
-                        controller: pass,
+                        obscureText: true,
+                        controller: oldController,
+                        maxLength: 37,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Password',
+                            hintText: "**********"),
+                        validator: (String value) {
+                          newpass = value;
+                          if (value.isEmpty) {
+                            return "The Password field is Empty";
+                          } else if (value.length < 8) {
+                            return "Password must be longer than 8 characters";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      child: TextFormField(
+                        obscureText: true,
+                        controller: newController,
                         maxLength: 37,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'New Password',
                             hintText: "**********"),
-                        validator: (value) {
+                        validator: (String value) {
                           if (value.isEmpty) {
-                            return value.isEmpty
-                                ? "The Password is Empty"
-                                : null;
+                            return "Please Re-Enter New Password";
+                          } else if (value == newpass) {
+                            return "Password must be different than above";
                           } else if (value.length < 8) {
                             return "Password must be longer than 8 characters";
+                          } else {
+                            return null;
                           }
-
-                          return null;
                         },
                       ),
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 30.0,
                     ),
                     Container(
                         height: 50,
@@ -88,17 +109,14 @@ class _State extends State<ForgetPassword> {
                         child: RaisedButton(
                             onPressed: () {
                               print(userController.text);
-                              print(pass.text);
-
+                              print(oldController.text);
+                              print(newController.text);
                               setState(() {
                                 if (_formKey.currentState.validate()) {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ProfileApp()));
-                                }
-                                if (_formKey.currentState.validate()) {
-                                  print("Process");
+                                          builder: (context) => Signin()));
                                 }
                               });
                             },
@@ -122,7 +140,7 @@ class _State extends State<ForgetPassword> {
                                       maxWidth: 390.0, minHeight: 550.0),
                                   alignment: Alignment.center,
                                   child: Text(
-                                    " Reset ",
+                                    " Change Password",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 25.0,
@@ -165,6 +183,53 @@ class _State extends State<ForgetPassword> {
                                   alignment: Alignment.center,
                                   child: Text(
                                     " Back",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.w300),
+                                  ),
+                                )))),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Container(
+                        height: 50,
+                        width: 250.00,
+                        child: RaisedButton(
+                            onPressed: () {
+                              print(userController.text);
+                              print(oldController.text);
+                              print(newController.text);
+                              setState(() {
+                                if (_formKey.currentState.validate()) {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ProfileApp()));
+                                }
+                              });
+                            },
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100.0)),
+                            elevation: 0.0,
+                            padding: EdgeInsets.all(0.0),
+                            child: Ink(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.centerRight,
+                                      end: Alignment.centerLeft,
+                                      colors: [
+                                        Colors.greenAccent,
+                                        Colors.lightGreenAccent
+                                      ]),
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                child: Container(
+                                  constraints: BoxConstraints(
+                                      maxWidth: 390.0, minHeight: 550.0),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    " Get in your Profile",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 25.0,

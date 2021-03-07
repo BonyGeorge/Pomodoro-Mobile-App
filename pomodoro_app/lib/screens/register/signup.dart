@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/register/login.dart';
+import 'package:flutter/services.dart';
 
 class Signup extends StatefulWidget {
   static const routeName = '/signup';
@@ -10,10 +11,12 @@ class Signup extends StatefulWidget {
 
 class _State extends State<Signup> {
   var _formKey = GlobalKey<FormState>();
+  var newpass;
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController conController = TextEditingController();
   TextEditingController numController = TextEditingController();
 
   @override
@@ -66,11 +69,39 @@ class _State extends State<Signup> {
                           labelText: 'Username',
                         ),
                         validator: (value) {
-                          return value.isEmpty
-                              ? "The Username field is Empty"
-                              : null;
+                          if (value.length < 5) {
+                            return "Please enter a valid Username.";
+                          } else if (value.isEmpty) {
+                            return "The Username is Empty";
+                          } else {
+                            return null;
+                          }
                         },
                       ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: TextFormField(
+                          keyboardType: TextInputType.number,
+                          maxLength: 11,
+                          controller: numController,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                          ],
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Mobile Number',
+                              hintText: "01*********"),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return value.isEmpty
+                                  ? "The Mobile field is Empty"
+                                  : null;
+                            } else if (value.length < 11) {
+                              return 'Enter sum of 11 Numbers';
+                            }
+                            return null;
+                          }),
                     ),
                     Container(
                       padding: EdgeInsets.all(10),
@@ -93,45 +124,48 @@ class _State extends State<Signup> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(10),
-                      child: TextFormField(
-                        maxLength: 11,
-                        keyboardType: TextInputType.number,
-                        controller: numController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Mobile Number',
-                        ),
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return value.isEmpty
-                                ? "The Mobile field is Empty"
-                                : null;
-                          }
-                          if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
-                                  .hasMatch(value) &&
-                              // ignore: unrelated_type_equality_checks
-                              value.length != 11) {
-                            return 'Enter 11 No. only without letters';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    Container(
                       padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: TextFormField(
                           obscureText: true,
                           controller: passwordController,
+                          maxLength: 37,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Password',
-                          ),
+                              border: OutlineInputBorder(),
+                              labelText: 'Password',
+                              hintText: "**********"),
                           validator: (value) {
-                            return value.isEmpty
-                                ? "The Passwrod field is Empty"
-                                : null;
+                            newpass = value;
+                            if (value.length < 8) {
+                              return "Password must be longer than 8 characters";
+                            } else if (value.isEmpty) {
+                              return "The Password field is Empty";
+                            } else {
+                              return null;
+                            }
                           }),
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      child: TextFormField(
+                        obscureText: true,
+                        controller: conController,
+                        maxLength: 37,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Confirm Password',
+                            hintText: "**********"),
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return "Please Re-Enter the Password";
+                          } else if (value != newpass) {
+                            return "Password must be different than above";
+                          } else if (value.length < 8) {
+                            return "Password must be longer than 8 characters";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                     ),
                     SizedBox(
                       height: 30.0,
@@ -146,6 +180,7 @@ class _State extends State<Signup> {
                             print(emailController.text);
                             print(numController.text);
                             print(passwordController.text);
+                            print(conController);
 
                             setState(() {
                               if (_formKey.currentState.validate()) {

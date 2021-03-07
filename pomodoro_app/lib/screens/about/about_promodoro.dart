@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:flutter/gestures.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AboutScreen extends StatelessWidget {
   static const routeName = '/about';
@@ -48,20 +47,10 @@ class AboutScreen extends StatelessWidget {
                               fontWeight: FontWeight.normal),
                           children: <TextSpan>[
                             TextSpan(
-                              text: ' Learn more.',
-                              style: TextStyle(
-                                  color: Colors.blueAccent, fontSize: 20),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () async {
-                                  final url =
-                                      'https://www.themuse.com/advice/take-it-from-someone-who-hates-productivity-hacksthe-pomodoro-technique-actually-works';
-                                  if (await canLaunch(url)) {
-                                    await launch(
-                                      url,
-                                    );
-                                  }
-                                },
-                            )
+                                text: ' Learn more.',
+                                style: TextStyle(
+                                    color: Colors.blueAccent, fontSize: 20),
+                                recognizer: TapGestureRecognizer())
                           ])
                     ])),
               ],

@@ -1,32 +1,49 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class User {
+class UserModel {
   String id;
-  String name;
+  String fullname;
+  String username;
+  String mobile;
   String email;
   String password;
-  String mobile;
-
+  String conpassword;
   // Constructor.
-  User({
+  UserModel({
     this.id,
-    @required this.name,
-    @required this.email,
-    @required this.password,
-    @required this.mobile,
+    this.username,
+    this.fullname,
+    this.email,
+    this.password,
+    this.conpassword,
+    this.mobile,
   });
 
   // Setters & Getters.
   String get iD => id;
 
-  set userName(String name) => this.name = name;
-  String get userName => name;
+  String get userName {
+    return username;
+  }
 
-  set userEmail(String email) => this.email = email;
-  String get userEmail => email;
+  String get passWord {
+    return password;
+  }
 
-  set userMobile(String mobile) => this.mobile = mobile;
-  String get userMobile => mobile;
+  String get confirm {
+    return conpassword;
+  }
 
-  set userPassword(String password) => this.password = password;
+  String get fullName {
+    return fullname;
+  }
+
+  String get phone {
+    return mobile;
+  }
+
+  String get mail {
+    return email;
+  }
 }
