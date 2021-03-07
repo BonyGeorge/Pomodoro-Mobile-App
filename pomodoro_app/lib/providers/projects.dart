@@ -29,20 +29,20 @@ class ProjectProvider with ChangeNotifier {
     ),
   ];
 
-  List<Project> _projectTasks = [
-    Project(
+  List<Task> _projectTasks = [
+    Task(
       id: 'PT#1',
       title: 'P Task 1',
       dueDate: DateTime.now(),
       dueTime: TimeOfDay.now(),
     ),
-    Project(
+    Task(
       id: 'PT#2',
       title: 'P Task 2',
       dueDate: DateTime.now(),
       dueTime: TimeOfDay.now(),
     ),
-    Project(
+    Task(
       id: 'PT#3',
       title: 'P Task 3',
       dueDate: DateTime.now(),
@@ -54,12 +54,16 @@ class ProjectProvider with ChangeNotifier {
     return [..._projectList];
   }
 
-  List<Project> get projectsTasks {
+  List<Task> get projectsTasks {
     return [..._projectTasks];
   }
 
   Project getById(String id) {
     return _projectList.firstWhere((project) => project.id == id);
+  }
+
+  Task getByTaskId(String id) {
+    return _projectTasks.firstWhere((task) => task.id == id);
   }
 
   void createNewProject(Project project) {
@@ -73,13 +77,34 @@ class ProjectProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void createNewTaskProject(Task task) {
+    final newTaskProject = Task(
+      id: task.id,
+      title: task.taskTitle,
+      dueDate: task.dueDate,
+      dueTime: task.dueTime,
+    );
+    _projectTasks.add(newTaskProject);
+    notifyListeners();
+  }
+
   void editProject(Project project) {
     removeProject(project.id);
     createNewProject(project);
   }
 
+  void editTaskProject(Task task) {
+    removeTaskProject(task.id);
+    createNewTaskProject(task);
+  }
+
   void removeProject(String id) {
     _projectList.removeWhere((project) => project.id == id);
+    notifyListeners();
+  }
+
+  void removeTaskProject(String id) {
+    _projectTasks.removeWhere((task) => task.id == id);
     notifyListeners();
   }
 
