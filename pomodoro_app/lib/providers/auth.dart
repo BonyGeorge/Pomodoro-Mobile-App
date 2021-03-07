@@ -18,13 +18,14 @@ class Auth with ChangeNotifier {
         token != null) {
       return _token;
     }
+    return null;
   }
 
   bool get isAuth {
     return token != null;
   }
 
-  Future<bool> _authenticate(
+  Future<void> _authenticate(
       String email, String password, String action) async {
     final url =
         'https://identitytoolkit.googleapis.com/v1/accounts:$action?key=AIzaSyC7ngCPVKFNyDi4Xk2WmPy9f5giP2li2Yc';
