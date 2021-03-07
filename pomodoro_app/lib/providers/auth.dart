@@ -20,6 +20,11 @@ class Auth with ChangeNotifier {
         _token != null) {
       return _token;
     }
+    return null;
+  }
+
+  bool get isAuth {
+    return token != null;
   }
 
   Future<void> _authenticate(
@@ -93,5 +98,15 @@ class Auth with ChangeNotifier {
     runApp(new MaterialApp(
       home: new TimerScreen(),
     ));
+  }
+
+  // TODO: Check Logout with Nour.
+  Future<void> logout() async {
+    _token = null;
+    _expiryDate = null;
+    _userId = null;
+
+    var user = UserModel(email: null, username: null);
+    notifyListeners();
   }
 }
