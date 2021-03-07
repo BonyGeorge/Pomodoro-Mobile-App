@@ -57,7 +57,7 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(Icons.work),
             title: Text('My Projects'),
             onTap: () {
-              Navigator.of(context).pushNamed(Project.routeName);
+              Navigator.of(context).pushNamed(Projecty.routeName);
             },
           ),
           ListTile(

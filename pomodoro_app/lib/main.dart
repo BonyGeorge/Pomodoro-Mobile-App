@@ -3,10 +3,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/providers/tasks.dart';
+import 'package:pomodoro_app/providers/projects.dart';
 import 'package:pomodoro_app/screens/about/about_promodoro.dart';
-import 'package:pomodoro_app/screens/projects/add_project.dart';
 import 'package:pomodoro_app/screens/projects/projects.dart';
 import 'package:pomodoro_app/screens/tasks/tasks_history.dart';
+import 'package:pomodoro_app/screens/projects/ProjectTask.dart';
 import 'package:provider/provider.dart';
 import 'screens/register/signup.dart';
 import 'screens/register/forget.dart';
@@ -27,8 +28,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => TaskProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TaskProvider()),
+        ChangeNotifierProvider(create: (_) => ProjectProvider())
+      ],
       child: MaterialApp(
         title: 'Pomodoro App',
         initialRoute: '/',
@@ -39,10 +43,10 @@ class MyApp extends StatelessWidget {
           ProfileApp.routeName: (ctx) => ProfileApp(),
           TimerScreen.routeName: (ctx) => TimerScreen(),
           ForgetPassword.routeName: (ctx) => ForgetPassword(),
-          '/addprojects': (ctx) => AddProject(),
-          Project.routeName: (ctx) => Project(),
+          Projecty.routeName: (ctx) => Projecty(),
           TaskScreen.routeName: (ctx) => TaskScreen(),
           HistoryScreen.routeName: (ctx) => HistoryScreen(),
+          AddPTask.routeName: (ctx) => AddPTask(),
           AboutScreen.routeName: (ctx) => AboutScreen(),
         },
         theme: ThemeData(
