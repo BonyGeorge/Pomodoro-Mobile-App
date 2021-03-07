@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/Profile/profile.dart';
+import 'package:pomodoro_app/screens/profile/profile.dart';
 import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:pomodoro_app/providers/auth.dart';

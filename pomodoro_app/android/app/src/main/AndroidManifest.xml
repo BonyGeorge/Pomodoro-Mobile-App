@@ -1,5 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pomodoro_app">
+    
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide
@@ -9,6 +15,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="pomodoro_app"
         android:icon="@mipmap/launcher_icon">
+
+         <meta-data android:name="com.google.android.geo.AIzaSyBcKSpfBSxjVFzi_XSexfDafZ_uFAs7t0A"
+               android:value="AIzaSyBcKSpfBSxjVFzi_XSexfDafZ_uFAs7t0A"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

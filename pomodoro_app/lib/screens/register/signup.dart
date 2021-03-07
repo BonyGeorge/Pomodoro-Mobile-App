@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/providers/auth.dart';
 import 'package:pomodoro_app/screens/register/login.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:pomodoro_app/models/user.dart';
 
 class Signup extends StatefulWidget {
   static const routeName = '/signup';
@@ -175,15 +178,24 @@ class _State extends State<Signup> {
                       width: 250.00,
                       child: RaisedButton(
                           onPressed: () {
+                            // ignore: unnecessary_statements
+
                             print(fnameController.text);
                             print(lnameController.text);
                             print(emailController.text);
                             print(numController.text);
                             print(passwordController.text);
-                            print(conController);
-
+                            print(conController.text);
                             setState(() {
                               if (_formKey.currentState.validate()) {
+                                Provider.of<Auth>(context, listen: false)
+                                    .addUser(UserModel(
+                                        email: emailController.text,
+                                        fullname: fnameController.text,
+                                        conpassword: conController.text,
+                                        mobile: numController.text,
+                                        username: lnameController.text,
+                                        password: passwordController.text));
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
@@ -270,3 +282,5 @@ class _State extends State<Signup> {
                 ))));
   }
 }
+
+auth({bool contex}) {}

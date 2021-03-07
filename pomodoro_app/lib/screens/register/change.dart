@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/register/login.dart';
-import 'package:pomodoro_app/screens/Profile/profile.dart';
+import 'package:pomodoro_app/screens/profile/profile.dart';
 
-class Change extends StatefulWidget {
+class ChangePassword extends StatefulWidget {
   static const routeName = '/change';
 
   @override
   _State createState() => _State();
 }
 
-class _State extends State<Change> {
+class _State extends State<ChangePassword> {
   var _formKey = GlobalKey<FormState>();
   var newpass;
   TextEditingController userController = TextEditingController();
@@ -29,7 +29,7 @@ class _State extends State<Change> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Change Password Page',
+                          'Change Password',
                           style: TextStyle(
                               color: Colors.green[300],
                               fontWeight: FontWeight.w500,

@@ -1,26 +1,26 @@
 // The Main of running our code.
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/providers/auth.dart';
+import 'package:provider/provider.dart';
+
 import 'package:pomodoro_app/providers/tasks.dart';
 import 'package:pomodoro_app/providers/projects.dart';
 import 'package:pomodoro_app/screens/about/about_promodoro.dart';
 import 'package:pomodoro_app/screens/projects/projects.dart';
 import 'package:pomodoro_app/screens/tasks/tasks_history.dart';
 import 'package:pomodoro_app/screens/projects/ProjectTask.dart';
-import 'package:provider/provider.dart';
-import 'screens/register/signup.dart';
-import 'screens/register/forget.dart';
-import 'screens/register/login.dart';
-import 'screens/register/change.dart';
-import 'screens/landing_page.dart';
-import './screens/Profile/profile.dart';
-import './screens/Timer/timer.dart';
-import './screens/tasks/tasks.dart';
+import 'package:pomodoro_app/screens/register/signup.dart';
+import 'package:pomodoro_app/screens/register/forget.dart';
+import 'package:pomodoro_app/screens/register/login.dart';
+import 'package:pomodoro_app/screens/register/change.dart';
+import 'package:pomodoro_app/screens/landing_page.dart';
+import 'package:pomodoro_app/screens/profile/profile.dart';
+import 'package:pomodoro_app/screens/timer/timer.dart';
+import 'package:pomodoro_app/screens/tasks/tasks.dart';
+import 'package:pomodoro_app/screens/about/google_maps.dart';
 
 void main() {
-  /* WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();*/
   runApp(MyApp());
 }
 
@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => Auth()),
         ChangeNotifierProvider(create: (_) => TaskProvider()),
         ChangeNotifierProvider(create: (_) => ProjectProvider())
       ],
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         routes: {
           Signin.routeName: (ctx) => Signin(),
           Signup.routeName: (ctx) => Signup(),
-          Change.routeName: (ctx) => Change(),
+          ChangePassword.routeName: (ctx) => ChangePassword(),
           ProfileApp.routeName: (ctx) => ProfileApp(),
           TimerScreen.routeName: (ctx) => TimerScreen(),
           ForgetPassword.routeName: (ctx) => ForgetPassword(),
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
           HistoryScreen.routeName: (ctx) => HistoryScreen(),
           AddPTask.routeName: (ctx) => AddPTask(),
           AboutScreen.routeName: (ctx) => AboutScreen(),
+          GoogleMaps.routeName: (ctx) => GoogleMaps(),
         },
         theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,

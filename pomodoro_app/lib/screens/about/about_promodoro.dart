@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:flutter/gestures.dart';
+import 'package:pomodoro_app/screens/about/google_maps.dart';
 
 class AboutScreen extends StatelessWidget {
   static const routeName = '/about';
@@ -53,6 +54,43 @@ class AboutScreen extends StatelessWidget {
                                 recognizer: TapGestureRecognizer())
                           ])
                     ])),
+                Container(
+                    height: 50,
+                    width: 250.00,
+                    child: RaisedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => GoogleMaps()));
+                        },
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100.0)),
+                        elevation: 0.0,
+                        padding: EdgeInsets.all(0.0),
+                        child: Ink(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.centerRight,
+                                  end: Alignment.centerLeft,
+                                  colors: [
+                                    Colors.greenAccent,
+                                    Colors.lightGreenAccent
+                                  ]),
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: Container(
+                              constraints: BoxConstraints(
+                                  maxWidth: 390.0, minHeight: 550.0),
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Show Origin",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25.0,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            )))),
               ],
             ),
           ),
