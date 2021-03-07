@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:pomodoro_app/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pomodoro_app/screens/Timer/timer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Auth with ChangeNotifier {
   String _token;
@@ -29,17 +30,18 @@ class Auth with ChangeNotifier {
 
   Future<void> _authenticate(
       String email, String password, String action) async {
-    final url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:$action?key=AIzaSyC7ngCPVKFNyDi4Xk2WmPy9f5giP2li2Yc';
-    final response = await http.post(
-      url,
-      body: json.encode(
-        {'email': email, 'password': password, 'returnSecureToken': true},
-      ),
-    );
     try {
+      final url =
+          'https://identitytoolkit.googleapis.com/v1/accounts:$action?key=AIzaSyC7ngCPVKFNyDi4Xk2WmPy9f5giP2li2Yc';
+      final response = await http.post(
+        url,
+        body: json.encode(
+          {'email': email, 'password': password, 'returnSecureToken': true},
+        ),
+      );
       final responseData = json.decode(response.body);
-      if (responseData['Error'] != null) {
+      print(responseData['error']);
+      if (responseData['error'] != null) {
         throw HttpException(responseData['error']['message']);
       }
       _token = responseData['idToken'];
@@ -51,6 +53,21 @@ class Auth with ChangeNotifier {
       print('User ID: $_userId');
       print('Token: $_token');
       print('_expiryDate: $_expiryDate');
+      if (action == "signInWithPassword") {
+        var url =
+            'https://pomodoro-app-miu-default-rtdb.firebaseio.com/user/$_userId.json';
+        http.get(url);
+        // print(user.runtimeType);
+        // string to json .body
+        // todo get the object from the http get request
+        // add to user object (var user)
+        // user = UserModel()
+        // change this user to json (map) and encode it and save in shared prefrences
+        // final prefs = await SharedPreferences.getInstance(); SAME
+        // prefs.setString('user_data', json.encode(_user.toJson()));
+        // error sigupp haaaaaaaaaaaaaa
+
+      }
       notifyListeners();
     } catch (error) {
       throw error;
@@ -59,7 +76,6 @@ class Auth with ChangeNotifier {
 
   void addUser(UserModel user) {
     signup(user.email, user.passWord);
-// _authenticate(user.email, user.password, "signUp");
     var url =
         'https://pomodoro-app-miu-default-rtdb.firebaseio.com/user/$_userId.json';
     http.put(
@@ -77,13 +93,6 @@ class Auth with ChangeNotifier {
     );
   }
 
-  void getUser(UserModel user) {
-    login(user.email, user.passWord);
-    var url =
-        'https://pomodoro-app-miu-default-rtdb.firebaseio.com/user/$_userId.json';
-    http.get(url);
-  }
-
   Future<void> signup(String email, String password) async {
     return _authenticate(email, password, "signUp");
   }
@@ -98,6 +107,7 @@ class Auth with ChangeNotifier {
     _userId = null;
 
     var user = UserModel(email: null, username: null);
+    // var user = null;
     notifyListeners();
   }
 }
