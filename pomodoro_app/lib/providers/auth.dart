@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -7,65 +8,61 @@ import 'package:http/http.dart' as http;
 import 'package:pomodoro_app/models/user.dart';
 import 'package:pomodoro_app/screens/Timer/timer.dart';
 import 'package:pomodoro_app/screens/profile/profile.dart';
+import 'package:pomodoro_app/screens/register/login.dart';
 
 class Auth with ChangeNotifier {
-  String token;
+  String _token;
+  DateTime _expiryDate;
+  String _userId;
   var user = UserModel;
 
-  String get userToken {
-    return token;
+  String get token {
+    if (_expiryDate != null &&
+        _expiryDate.isAfter(DateTime.now()) &&
+        token != null) {
+      return _token;
+    }
   }
 
   bool get isAuth {
-    return userToken != null;
+    return token != null;
   }
 
-  Future<bool> register(String email, String password) async {
+  Future<bool> _authenticate(
+      String email, String password, String action) async {
+    final url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:$action?key=AIzaSyC7ngCPVKFNyDi4Xk2WmPy9f5giP2li2Yc';
+    final response = await http.post(
+      url,
+      body: json.encode(
+        {'email': email, 'password': password, 'returnSecureToken': true},
+      ),
+    );
     try {
-      FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: password, password: password);
-      print(FirebaseAuth.instance.currentUser.uid);
-      return true;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+      final responseData = json.decode(response.body);
+      if (responseData['Error'] != null) {
+        throw HttpException(responseData['error']['message']);
       }
-      return false;
-    } catch (e) {
-      print(e.toString());
-      return false;
+      _token = responseData['idToken'];
+      _userId = responseData['localId'];
+      _expiryDate = DateTime.now().add(Duration(
+          seconds: int.parse(
+        responseData['expiresIn'],
+      )));
+      print('User ID: $_userId');
+      print('Token: $_token');
+      print('_expiryDate: $_expiryDate');
+      notifyListeners();
+    } catch (error) {
+      throw error;
     }
   }
 
-  void addUser(UserModel user) {
-    const url =
-        'https://pomodoro-app-miu-default-rtdb.firebaseio.com/user.json';
-    http.post(url,
-        body: json.encode({
-          "Fullname": user.fullName,
-          "Username": user.userName,
-          "email": user.mail,
-          "mobile": user.phone,
-          "password": user.passWord,
-          "conpassword": user.confirm,
-        }));
-    // final newUser = UserModel(
-    // fullname: user.fullname,
-    // username: user.username,
-    //  email: user.email,
-    //  mobile: user.mobile,
-    //   password: user.password,
-    // conpassword: user.conpassword,
-    // );
+  Future<void> signup(String email, String password) async {
+    return _authenticate(email, password, "signUp");
+  }
 
-    void signOut() async {
-      await FirebaseAuth.instance.signOut();
-      FirebaseUser user = FirebaseAuth.instance.currentUser;
-      runApp(new MaterialApp(
-        home: new TimerScreen(),
-      ));
-    }
+  Future<void> login(String email, String password) async {
+    return _authenticate(email, password, "signInWithPassword");
   }
 }

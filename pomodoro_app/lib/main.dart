@@ -16,11 +16,13 @@ import 'screens/landing_page.dart';
 import './screens/Profile/profile.dart';
 import './screens/Timer/timer.dart';
 import './screens/tasks/tasks.dart';
+import './providers/auth.dart';
 
 void main() {
-  /* WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();*/
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => Auth(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
