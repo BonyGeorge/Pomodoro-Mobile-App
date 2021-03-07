@@ -70,8 +70,8 @@ class Auth with ChangeNotifier {
           "Username": user.userName,
           "email": user.mail,
           "mobile": user.phone,
-          // "password": user.passWord,
-          // "conpassword": user.confirm,
+          "password": user.passWord,
+          "conpassword": user.confirm,
         },
       ),
     );
@@ -92,15 +92,6 @@ class Auth with ChangeNotifier {
     return _authenticate(email, password, "signInWithPassword");
   }
 
-  void signOut() async {
-    await FirebaseAuth.instance.signOut();
-    FirebaseUser user = FirebaseAuth.instance.currentUser;
-    runApp(new MaterialApp(
-      home: new TimerScreen(),
-    ));
-  }
-
-  // TODO: Check Logout with Nour.
   Future<void> logout() async {
     _token = null;
     _expiryDate = null;
