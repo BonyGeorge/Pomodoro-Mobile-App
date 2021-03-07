@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/register/login.dart';
 import 'package:flutter/services.dart';
-import 'package:pomodoro_app/providers/auth.dart';
 
 class Signup extends StatefulWidget {
   static const routeName = '/signup';

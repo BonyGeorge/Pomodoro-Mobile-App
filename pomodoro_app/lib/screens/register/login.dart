@@ -3,7 +3,6 @@ import 'package:pomodoro_app/screens/timer/timer.dart';
 import '../register/signup.dart';
 import '../register/forget.dart';
 import '../register/change.dart';
-import 'package:pomodoro_app/providers/auth.dart';
 
 class Signin extends StatefulWidget {
   static const routeName = '/login';
