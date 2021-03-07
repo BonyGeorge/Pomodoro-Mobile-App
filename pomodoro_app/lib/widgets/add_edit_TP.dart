@@ -111,13 +111,12 @@ class _AddNewTaskProjectState extends State<AddNewTaskProject> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Project Title',
-                  style: Theme.of(context).textTheme.subtitle1),
+              Text('Task Title', style: Theme.of(context).textTheme.subtitle1),
               TextFormField(
                 initialValue:
                     _inputDescription == null ? null : _inputDescription,
                 decoration: InputDecoration(
-                  hintText: 'Describe your project.',
+                  hintText: 'Describe your task.',
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
