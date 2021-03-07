@@ -20,10 +20,7 @@ import './screens/tasks/tasks.dart';
 import './providers/auth.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => Auth(),
-    child: MyApp(),
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
