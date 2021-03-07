@@ -3,6 +3,7 @@ import 'package:pomodoro_app/screens/timer/timer.dart';
 import '../register/signup.dart';
 import '../register/forget.dart';
 import '../register/change.dart';
+import 'package:pomodoro_app/providers/auth.dart';
 
 class Signin extends StatefulWidget {
   static const routeName = '/login';
@@ -83,7 +84,6 @@ class _State extends State<Signin> {
                           style: TextStyle(fontSize: 40)),
 
                       onPressed: () {
-                        //signup screen
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/register/login.dart';
 import 'package:flutter/services.dart';
+import 'package:pomodoro_app/providers/auth.dart';
 
 class Signup extends StatefulWidget {
   static const routeName = '/signup';
@@ -181,7 +182,6 @@ class _State extends State<Signup> {
                             print(numController.text);
                             print(passwordController.text);
                             print(conController);
-
                             setState(() {
                               if (_formKey.currentState.validate()) {
                                 Navigator.pushReplacement(

@@ -1,6 +1,7 @@
 // The Main of running our code.
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/providers/auth.dart';
 import 'package:provider/provider.dart';
 
 import 'package:pomodoro_app/providers/tasks.dart';
@@ -20,8 +21,6 @@ import 'package:pomodoro_app/screens/tasks/tasks.dart';
 import 'package:pomodoro_app/screens/about/google_maps.dart';
 
 void main() {
-  /* WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();*/
   runApp(MyApp());
 }
 
@@ -31,6 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => Auth()),
         ChangeNotifierProvider(create: (_) => TaskProvider()),
         ChangeNotifierProvider(create: (_) => ProjectProvider())
       ],

@@ -1,3 +1,7 @@
+//import 'package:sqflite/sqflite.dart';
+
+enum AuthMode { Signup, Signin }
+
 class UserModel {
   String id;
   String fullname;
