@@ -1,97 +1,75 @@
 // The Tasks Page.
 /* Here is all of the user daily tasks.*/
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/projects/Project1.dart';
-import 'package:pomodoro_app/screens/projects/add_project.dart';
-//import 'package:pomodoro_app/widgets/checkbox.dart';
 import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:provider/provider.dart';
+import 'package:pomodoro_app/providers/projects.dart';
+import 'package:pomodoro_app/widgets/project_list.dart';
+import 'package:pomodoro_app/widgets/add_edit_project.dart';
 
-class Project extends StatefulWidget {
+class Projecty extends StatefulWidget {
   static const routeName = '/projects';
 
   @override
-  _ProjectState createState() => _ProjectState();
+  _ProjectyState createState() => _ProjectyState();
 }
 
-class _ProjectState extends State<Project> {
-  List userprojects = ["Project 1", "Project 2"];
-
+class _ProjectyState extends State<Projecty> {
   @override
   Widget build(BuildContext context) {
+    final projecttList = Provider.of<ProjectProvider>(context).projectsList;
+    //final task = Provider.of<TaskProvider>(context);
     return Scaffold(
       appBar: GradientAppBar(
         title: Text('My Projects'),
         backgroundColorStart: Colors.cyan,
         backgroundColorEnd: Colors.green,
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => AddProject()));
+              showModalBottomSheet(
+                context: context,
+                builder: (_) => AddNewProject(isEditMode: false),
+              );
             },
           ),
         ],
       ),
       drawer: MyDrawer(),
-      body: ReorderableListView(
-        padding: EdgeInsets.only(
-          top: 40,
-        ),
-        header: Text("Your Projects",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            )),
-        children: userprojects
-            .map(
-              (item) => ListTile(
-                key: ValueKey("$item"),
-                title: Text("$item"),
-                // trailing: MyCheckbox(),
-              ),
+      body: projecttList.length > 0
+          ? ListView.builder(
+              itemCount: projecttList.length,
+              itemBuilder: (context, index) {
+                return ProjectItem(projecttList[index]);
+              },
             )
-            .toList(),
-        onReorder: (start, current) {
-          setState(() {
-            _updateMyProjects(start, current);
-          });
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ProjectT()));
-        },
-        label: Text('View'),
-        icon: Icon(Icons.search),
-        backgroundColor: Colors.green,
-      ),
+          : LayoutBuilder(
+              builder: (ctx, constraints) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: constraints.maxHeight * 0.5,
+                        child: Image.asset('assets/images/nodata.png',
+                            fit: BoxFit.cover),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        'No Projects added yet...',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
     );
-  }
-
-  void _updateMyProjects(start, current) {
-    // Dragging the Task from top to bottom.
-    if (start < current) {
-      int end = current - 1;
-      String startItem = userprojects[start];
-      int i = 0;
-      int local = start;
-      do {
-        userprojects[local] = userprojects[++local];
-        i++;
-      } while (i < end - start);
-      userprojects[end] = startItem;
-    }
-
-    // Dragging the Task from bottom to top.
-    else if (start > current) {
-      String startItem = userprojects[start];
-      for (int i = start; i > current; i--) {
-        userprojects[i] = userprojects[i - 1];
-      }
-      userprojects[current] = startItem;
-    }
   }
 }
