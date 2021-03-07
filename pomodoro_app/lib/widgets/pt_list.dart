@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pomodoro_app/widgets/task_name.dart';
 import 'package:pomodoro_app/providers/projects.dart';
-import 'package:pomodoro_app/models/project.dart';
+import 'package:pomodoro_app/models/task.dart';
 
 class PTItem extends StatefulWidget {
-  final Project pt;
+  final Task pt;
   PTItem(this.pt);
 
   @override

@@ -10,7 +10,7 @@ class Project {
   DateTime dueDate;
   TimeOfDay dueTime;
   bool isCompleted;
-  final List<Project> task;
+  final List<Task> task;
 
   // Constructor.
   Project({

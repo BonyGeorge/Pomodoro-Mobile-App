@@ -29,20 +29,20 @@ class ProjectProvider with ChangeNotifier {
     ),
   ];
 
-  List<Project> _projectTasks = [
-    Project(
+  List<Task> _projectTasks = [
+    Task(
       id: 'PT#1',
       title: 'P Task 1',
       dueDate: DateTime.now(),
       dueTime: TimeOfDay.now(),
     ),
-    Project(
+    Task(
       id: 'PT#2',
       title: 'P Task 2',
       dueDate: DateTime.now(),
       dueTime: TimeOfDay.now(),
     ),
-    Project(
+    Task(
       id: 'PT#3',
       title: 'P Task 3',
       dueDate: DateTime.now(),
@@ -54,7 +54,7 @@ class ProjectProvider with ChangeNotifier {
     return [..._projectList];
   }
 
-  List<Project> get projectsTasks {
+  List<Task> get projectsTasks {
     return [..._projectTasks];
   }
 
@@ -63,6 +63,17 @@ class ProjectProvider with ChangeNotifier {
   }
 
   void createNewProject(Project project) {
+    final newProject = Project(
+      id: project.id,
+      title: project.projectTitle,
+      dueDate: project.dueDate,
+      dueTime: project.dueTime,
+    );
+    _projectList.add(newProject);
+    notifyListeners();
+  }
+
+  void createNewTaskProject(Project project) {
     final newProject = Project(
       id: project.id,
       title: project.projectTitle,
