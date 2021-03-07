@@ -61,4 +61,14 @@ class Auth with ChangeNotifier {
   Future<void> login(String email, String password) async {
     return _authenticate(email, password, "signInWithPassword");
   }
+
+  // TODO: Check Logout with Nour.
+  Future<void> logout() async {
+    _token = null;
+    _expiryDate = null;
+    _userId = null;
+
+    var user = UserModel(email: null, username: null);
+    notifyListeners();
+  }
 }
