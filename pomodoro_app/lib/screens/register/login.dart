@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/Timer/timer.dart';
+import 'package:pomodoro_app/screens/timer/timer.dart';
 import '../register/signup.dart';
 import '../register/forget.dart';
 import '../register/change.dart';
@@ -174,7 +174,7 @@ class _State extends State<Signin> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Change()));
+                                    builder: (context) => ChangePassword()));
                             if (_formKey.currentState.validate()) {
                               Scaffold.of(context).showSnackBar(
                                   SnackBar(content: Text("Process")));

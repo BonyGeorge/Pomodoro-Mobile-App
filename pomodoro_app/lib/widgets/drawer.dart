@@ -1,7 +1,7 @@
 // The Drawer of our App.
 /* Here is the drawer where the user can navigate to any screen he wants.*/
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/Profile/profile.dart';
+import 'package:pomodoro_app/screens/profile/profile.dart';
 import 'package:pomodoro_app/screens/about/about_promodoro.dart';
 import 'package:pomodoro_app/screens/projects/projects.dart';
 import 'package:pomodoro_app/screens/tasks/tasks.dart';

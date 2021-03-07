@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:pomodoro_app/models/user.dart';
-import 'package:pomodoro_app/screens/Timer/timer.dart';
 import 'package:pomodoro_app/screens/profile/profile.dart';
 
 class Auth with ChangeNotifier {
@@ -60,12 +59,12 @@ class Auth with ChangeNotifier {
     // conpassword: user.conpassword,
     // );
 
-    void signOut() async {
+    /* void signOut() async {
       await FirebaseAuth.instance.signOut();
       FirebaseUser user = FirebaseAuth.instance.currentUser;
       runApp(new MaterialApp(
         home: new TimerScreen(),
       ));
-    }
+    }*/
   }
 }
