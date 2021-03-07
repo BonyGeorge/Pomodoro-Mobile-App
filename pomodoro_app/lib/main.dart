@@ -1,8 +1,8 @@
 // The Main of running our code.
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:pomodoro_app/providers/tasks.dart';
 import 'package:pomodoro_app/providers/projects.dart';
 import 'package:pomodoro_app/screens/about/about_promodoro.dart';
@@ -17,6 +17,7 @@ import 'package:pomodoro_app/screens/landing_page.dart';
 import 'package:pomodoro_app/screens/profile/profile.dart';
 import 'package:pomodoro_app/screens/timer/timer.dart';
 import 'package:pomodoro_app/screens/tasks/tasks.dart';
+import 'package:pomodoro_app/screens/about/google_maps.dart';
 
 void main() {
   /* WidgetsFlutterBinding.ensureInitialized();
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
           HistoryScreen.routeName: (ctx) => HistoryScreen(),
           AddPTask.routeName: (ctx) => AddPTask(),
           AboutScreen.routeName: (ctx) => AboutScreen(),
+          GoogleMaps.routeName: (ctx) => GoogleMaps(),
         },
         theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,
