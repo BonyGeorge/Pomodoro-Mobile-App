@@ -67,6 +67,13 @@ class MyDrawer extends StatelessWidget {
               Navigator.of(context).pushNamed(AboutScreen.routeName);
             },
           ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Logout'),
+            onTap: () {
+              Navigator.of(context).pushNamed(AboutScreen.routeName);
+            },
+          ),
         ],
       ),
     );
