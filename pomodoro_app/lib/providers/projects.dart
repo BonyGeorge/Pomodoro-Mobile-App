@@ -62,6 +62,10 @@ class ProjectProvider with ChangeNotifier {
     return _projectList.firstWhere((project) => project.id == id);
   }
 
+  Task getByTaskId(String id) {
+    return _projectTasks.firstWhere((task) => task.id == id);
+  }
+
   void createNewProject(Project project) {
     final newProject = Project(
       id: project.id,
@@ -73,14 +77,14 @@ class ProjectProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void createNewTaskProject(Project project) {
-    final newProject = Project(
-      id: project.id,
-      title: project.projectTitle,
-      dueDate: project.dueDate,
-      dueTime: project.dueTime,
+  void createNewTaskProject(Task task) {
+    final newTaskProject = Task(
+      id: task.id,
+      title: task.taskTitle,
+      dueDate: task.dueDate,
+      dueTime: task.dueTime,
     );
-    _projectList.add(newProject);
+    _projectTasks.add(newTaskProject);
     notifyListeners();
   }
 
@@ -89,8 +93,18 @@ class ProjectProvider with ChangeNotifier {
     createNewProject(project);
   }
 
+  void editTaskProject(Task task) {
+    removeTaskProject(task.id);
+    createNewTaskProject(task);
+  }
+
   void removeProject(String id) {
     _projectList.removeWhere((project) => project.id == id);
+    notifyListeners();
+  }
+
+  void removeTaskProject(String id) {
+    _projectTasks.removeWhere((task) => task.id == id);
     notifyListeners();
   }
 
