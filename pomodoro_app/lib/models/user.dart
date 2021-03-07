@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 
 enum AuthMode { Signup, Signin }
 
 class UserModel {
+  String token;
   String id;
   String fullname;
   String username;
@@ -14,6 +14,7 @@ class UserModel {
   String conpassword;
   // Constructor.
   UserModel({
+    token,
     this.id,
     this.username,
     this.fullname,
@@ -25,6 +26,9 @@ class UserModel {
 
   // Setters & Getters.
   String get iD => id;
+  bool get isAuth {
+    return token != null;
+  }
 
   String get userName {
     return username;

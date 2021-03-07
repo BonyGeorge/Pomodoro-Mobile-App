@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/providers/auth.dart';
 import 'package:pomodoro_app/screens/Timer/timer.dart';
+import 'package:provider/provider.dart';
+import 'package:pomodoro_app/models/user.dart';
 import '../register/signup.dart';
 import '../register/forget.dart';
 import '../register/change.dart';
-import 'package:pomodoro_app/providers/auth.dart';
 
 class Signin extends StatefulWidget {
   static const routeName = '/login';
@@ -99,6 +101,10 @@ class _State extends State<Signin> {
                               print(emailController.text);
                               print(passwordController.text);
                               setState(() {
+                                Provider.of<Auth>(context, listen: false)
+                                    .addUser(UserModel(
+                                        email: emailController.text,
+                                        password: passwordController.text));
                                 if (_formKey.currentState.validate()) {
                                   Navigator.pushReplacement(
                                       context,
