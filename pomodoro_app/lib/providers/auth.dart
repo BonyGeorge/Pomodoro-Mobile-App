@@ -65,7 +65,6 @@ class Auth with ChangeNotifier {
         // change this user to json (map) and encode it and save in shared prefrences
         // final prefs = await SharedPreferences.getInstance(); SAME
         // prefs.setString('user_data', json.encode(_user.toJson()));
-        // error sigupp haaaaaaaaaaaaaa
 
       }
       notifyListeners();
