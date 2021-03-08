@@ -18,6 +18,8 @@ class MyDrawer extends StatelessWidget {
       },),*/
   @override
   Widget build(BuildContext context) {
+     final user = Provider.of<Auth>(context).user;
+        String str = '${user.email}';
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -28,12 +30,12 @@ class MyDrawer extends StatelessWidget {
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [Colors.blue, Colors.green])),
-            accountName: Text("Promodoro"),
-            accountEmail: Text("Promodoro_App@gmail.com"),
+            accountName: Text('${user.fullname}'),
+            accountEmail: Text('${user.email}'),
             currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.orange,
+              backgroundColor: Colors.blueAccent,
               child: Text(
-                "P",
+                str[0],
                 style: TextStyle(fontSize: 40.0),
               ),
             ),

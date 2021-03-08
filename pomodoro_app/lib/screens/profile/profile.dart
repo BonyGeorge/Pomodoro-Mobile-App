@@ -9,6 +9,7 @@ class ProfileApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<Auth>(context).user;
+    String str = '${user.email}';
     return Scaffold(
       drawer: MyDrawer(),
       appBar: GradientAppBar(
@@ -33,9 +34,11 @@ class ProfileApp extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg",
-                        ),
+                         backgroundColor: Colors.blueAccent,
+              child: Text( 
+                str[0],
+                style: TextStyle(fontSize: 40.0),
+              ),
                         radius: 60.0,
                       ),
                       SizedBox(

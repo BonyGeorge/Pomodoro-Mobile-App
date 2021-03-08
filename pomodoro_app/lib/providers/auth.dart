@@ -118,7 +118,6 @@ class Auth with ChangeNotifier {
     }
   }
 
-<<<<<<< HEAD
   void updateprofile(String fullname,String phone){
   update(fullname,phone);
   var url =
@@ -140,32 +139,6 @@ class Auth with ChangeNotifier {
 
   Future<void> signup(UserModel user, String password) async {
     return _authenticate(user.email, password, "signUp", user: user);
-=======
-  void updateprofile(
-      String fullname, String about, String email, String phone) {}
-
-  void addUser(UserModel user) {
-    signup(user.email, user.passWord);
-    var url =
-        'https://pomodoro-app-miu-default-rtdb.firebaseio.com/user/$_userId.json';
-    http.put(
-      url,
-      body: json.encode(
-        {
-          "Fullname": user.fullName,
-          "Username": user.userName,
-          "email": user.mail,
-          "mobile": user.phone,
-          "password": user.passWord,
-          "conpassword": user.confirm,
-        },
-      ),
-    );
-  }
-
-  Future<void> signup(String email, String password) async {
-    return _authenticate(email, password, "signUp");
->>>>>>> 0b3bf6d340817a2df16ad8fabc2da429e42df4c9
   }
 
   Future<void> login(String email, String password) async {
