@@ -12,13 +12,16 @@ import 'package:provider/provider.dart';
 /* The Drawer Structure. */
 class MyDrawer extends StatelessWidget {
   MyDrawer({Key key}) : super(key: key);
-
+/*Consumer<Auth>(
+      builder: (_, auth, child) => FutureBuilder(future: auth.autoLogin(), builder: (ctx, authSnapshot) {
+        if(auth.user)
+      },),*/
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
-        children: <Widget>[
+        children: [
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -60,7 +63,7 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(Icons.work),
             title: Text('My Projects'),
             onTap: () {
-              Navigator.of(context).pushNamed(Projecty.routeName);
+              Navigator.of(context).pushNamed(Project.routeName);
             },
           ),
           ListTile(

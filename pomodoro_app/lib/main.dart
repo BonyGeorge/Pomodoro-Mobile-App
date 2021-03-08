@@ -1,9 +1,9 @@
 // The Main of running our code.
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/providers/auth.dart';
 import 'package:provider/provider.dart';
 
+import 'package:pomodoro_app/providers/auth.dart';
 import 'package:pomodoro_app/providers/tasks.dart';
 import 'package:pomodoro_app/providers/projects.dart';
 import 'package:pomodoro_app/screens/about/about_promodoro.dart';
@@ -21,7 +21,10 @@ import 'package:pomodoro_app/screens/tasks/tasks.dart';
 import 'package:pomodoro_app/screens/about/google_maps.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => Auth(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +34,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Auth()),
-        ChangeNotifierProvider(create: (_) => TaskProvider()),
+        ChangeNotifierProxyProvider<Auth, TaskProvider>(
+          create: (_) => TaskProvider(
+              Provider.of<Auth>(context, listen: true).token,
+              Provider.of<Auth>(context, listen: true).userId, []),
+          update: (ctx, auth, tasks) =>
+              tasks..receiveToken(auth, tasks.itemsList),
+        ),
         ChangeNotifierProvider(create: (_) => ProjectProvider())
       ],
       child: MaterialApp(
@@ -44,7 +53,7 @@ class MyApp extends StatelessWidget {
           ProfileApp.routeName: (ctx) => ProfileApp(),
           TimerScreen.routeName: (ctx) => TimerScreen(),
           ForgetPassword.routeName: (ctx) => ForgetPassword(),
-          Projecty.routeName: (ctx) => Projecty(),
+          Project.routeName: (ctx) => Project(),
           TaskScreen.routeName: (ctx) => TaskScreen(),
           HistoryScreen.routeName: (ctx) => HistoryScreen(),
           AddPTask.routeName: (ctx) => AddPTask(),
