@@ -41,7 +41,13 @@ class MyApp extends StatelessWidget {
           update: (ctx, auth, tasks) =>
               tasks..receiveToken(auth, tasks.itemsList),
         ),
-        ChangeNotifierProvider(create: (_) => ProjectProvider())
+        ChangeNotifierProxyProvider<Auth, ProjectProvider>(
+          create: (_) => ProjectProvider(
+              Provider.of<Auth>(context, listen: true).token,
+              Provider.of<Auth>(context, listen: true).userId, []),
+          update: (ctx, auth, projects) =>
+              projects..receiveToken(auth, projects.projectsList),
+        )
       ],
       child: MaterialApp(
         title: 'Pomodoro App',
@@ -81,8 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5),
-        () => Navigator.pushNamed(context, Signup.routeName));
+    Timer(Duration(seconds: 5), () async {
+      final lis = await Provider.of<Auth>(context, listen: false).autoLogin();
+      if (lis == true) {
+        Navigator.pushNamed(context, TimerScreen.routeName);
+      } else {
+        Navigator.pushNamed(context, Signup.routeName);
+      }
+    });
   }
 
   @override
