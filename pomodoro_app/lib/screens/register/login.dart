@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/providers/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:pomodoro_app/models/user.dart';
 import 'package:pomodoro_app/screens/timer/timer.dart';
 import '../register/signup.dart';
-import '../register/forget.dart';
-import '../register/change.dart';
 
 class Signin extends StatefulWidget {
   static const routeName = '/login';
@@ -18,7 +15,6 @@ class _State extends State<Signin> {
   var _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
   void _showErrorDialog(String message) {
     showDialog(
       context: context,

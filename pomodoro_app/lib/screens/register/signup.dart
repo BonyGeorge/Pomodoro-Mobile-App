@@ -208,21 +208,20 @@ class _State extends State<Signup> {
                             if (_formKey.currentState.validate()) {
                               try {
                                 await Provider.of<Auth>(context, listen: false)
-                                    .addUser(UserModel(
-                                        email: emailController.text,
-                                        fullname: fnameController.text,
-                                        conpassword: conController.text,
-                                        mobile: numController.text,
-                                        username: lnameController.text,
-                                        password: passwordController.text));
+                                    .signup(
+                                        UserModel(
+                                            email: emailController.text,
+                                            fullname: fnameController.text,
+                                            conpassword: conController.text,
+                                            mobile: numController.text,
+                                            username: lnameController.text,
+                                            password: passwordController.text),
+                                        passwordController.text);
 
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Signin()));
-                                if (_formKey.currentState.validate()) {
-                                  print("Processing Data...");
-                                }
                               } catch (error) {
                                 var errorMessage = 'Authentication failed';
                                 if (error.toString().contains('EMAIL_EXISTS')) {
