@@ -43,7 +43,7 @@ class TaskProvider with ChangeNotifier {
   ];
 
   List<Task> _completedList = [
-    Task(
+    /*Task(
       id: 'comptask#1',
       title: 'Completed Task 1',
       dueDate: DateTime.now(),
@@ -60,7 +60,7 @@ class TaskProvider with ChangeNotifier {
       title: 'Completed Task 3',
       dueDate: DateTime.now(),
       dueTime: TimeOfDay.now(),
-    ),
+    ),*/
   ];
 
   List<Task> get itemsList {
@@ -113,7 +113,8 @@ class TaskProvider with ChangeNotifier {
   }
 
   Future<void> fetchAndSetTasks({bool filterByUser = true}) async {
-    final filterString = filterByUser ? 'orderBy="ownerId"&equalTo=1' : '';
+    final filterString =
+        filterByUser ? 'orderBy="ownerId"&equalTo="$userId"' : '';
 
     var url = '$baseUrl/Tasks.json?$filterString';
     try {
@@ -154,8 +155,8 @@ class TaskProvider with ChangeNotifier {
         url,
         body: json.encode({
           'title': task.title,
-          'dueTime': task.dueTime,
-          'dueDate': task.dueDate,
+          //'dueTime':task.dueTime,
+          //'dueDate':  task.dueDate,
           'ownerId': userId,
         }),
       );
@@ -172,5 +173,38 @@ class TaskProvider with ChangeNotifier {
       print(error);
       throw error;
     }
+  }
+
+  Future<void> updateTask(String id, Task newTask) async {
+    final taskIndex = _toDoList.indexWhere((task) => task.id == id);
+    if (taskIndex >= 0) {
+      final url = '$baseUrl/Tasks/$id.json?auth=$authToken';
+      await http.patch(url,
+          body: json.encode({
+            'title': newTask.title,
+            //'dueTime':task.dueTime,
+            //'dueDate':  task.dueDate,
+            'ownerId': userId,
+          }));
+      _toDoList[taskIndex] = newTask;
+      notifyListeners();
+    } else {
+      print('Couldnot find task');
+    }
+  }
+
+  Future<void> deleteTask(String id) async {
+    final url = '$baseUrl/Tasks/$id.json?auth=$authToken';
+    final existingTaskIndex = _toDoList.indexWhere((task) => task.id == id);
+    var existingProduct = _toDoList[existingTaskIndex];
+    _toDoList.removeAt(existingTaskIndex);
+    notifyListeners();
+    final response = await http.delete(url);
+    if (response.statusCode >= 400) {
+      _toDoList.insert(existingTaskIndex, existingProduct);
+      notifyListeners();
+      print('Could not delete task.');
+    }
+    existingProduct = null;
   }
 }

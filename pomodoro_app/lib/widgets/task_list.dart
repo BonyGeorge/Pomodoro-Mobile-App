@@ -23,14 +23,14 @@ class _ListItemState extends State<ListItem> {
         Provider.of<TaskProvider>(context, listen: false)
             .completeTask(widget.task.id);
         Provider.of<TaskProvider>(context, listen: false)
-            .removeTask(widget.task.id);
+            .deleteTask(widget.task.id);
       });
     }
 
     void _deleteTask() {
       setState(() {
         Provider.of<TaskProvider>(context, listen: false)
-            .removeTask(widget.task.id);
+            .deleteTask(widget.task.id);
       });
     }
 

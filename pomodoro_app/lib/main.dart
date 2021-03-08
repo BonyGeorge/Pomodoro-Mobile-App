@@ -41,7 +41,13 @@ class MyApp extends StatelessWidget {
           update: (ctx, auth, tasks) =>
               tasks..receiveToken(auth, tasks.itemsList),
         ),
-        ChangeNotifierProvider(create: (_) => ProjectProvider())
+        ChangeNotifierProxyProvider<Auth, ProjectProvider>(
+          create: (_) => ProjectProvider(
+              Provider.of<Auth>(context, listen: true).token,
+              Provider.of<Auth>(context, listen: true).userId, []),
+          update: (ctx, auth, projects) =>
+              projects..receiveToken(auth, projects.projectsList),
+        )
       ],
       child: MaterialApp(
         title: 'Pomodoro App',
