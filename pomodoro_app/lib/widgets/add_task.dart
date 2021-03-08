@@ -66,16 +66,17 @@ class _AddNewTaskState extends State<AddNewTask> {
         _selectedDate = DateTime.now();
       }
       if (!widget.isEditMode) {
-        Provider.of<TaskProvider>(context, listen: false).createNewTask(
+        Provider.of<TaskProvider>(context, listen: false).addTask(
           Task(
             id: DateTime.now().toString(),
             title: _inputDescription,
             dueDate: _selectedDate,
-            dueTime: _selectedTime,
+            // dueTime: _selectedTime,
           ),
         );
       } else {
-        Provider.of<TaskProvider>(context, listen: false).editTask(
+        Provider.of<TaskProvider>(context, listen: false).updateTask(
+          task.id,
           Task(
             id: task.id,
             title: _inputDescription,
@@ -109,7 +110,7 @@ class _AddNewTaskState extends State<AddNewTask> {
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            children: [
               Text('Title', style: Theme.of(context).textTheme.subtitle1),
               TextFormField(
                 initialValue:

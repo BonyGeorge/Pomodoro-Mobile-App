@@ -6,10 +6,9 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:pomodoro_app/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:pomodoro_app/screens/Timer/timer.dart';
+import 'package:pomodoro_app/screens/timer/timer.dart';
 import 'package:pomodoro_app/screens/profile/profile.dart';
 import 'package:pomodoro_app/screens/profile/editprofile.dart';
-
 
 class Auth with ChangeNotifier {
   String _token;
@@ -79,15 +78,8 @@ class Auth with ChangeNotifier {
     }
   }
 
-
-
-void updateprofile(String fullname , String about , String email , String phone){
-
-
-}
-
-
-
+  void updateprofile(
+      String fullname, String about, String email, String phone) {}
 
   void addUser(UserModel user) {
     signup(user.email, user.passWord);
