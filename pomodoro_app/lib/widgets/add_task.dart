@@ -68,10 +68,9 @@ class _AddNewTaskState extends State<AddNewTask> {
       if (!widget.isEditMode) {
         Provider.of<TaskProvider>(context, listen: false).addTask(
           Task(
-            id: DateTime.now().toString(),
             title: _inputDescription,
-            dueDate: _selectedDate,
-            // dueTime: _selectedTime,
+            //dueDate: _selectedDate,
+            //dueTime: _selectedTime,
           ),
         );
       } else {

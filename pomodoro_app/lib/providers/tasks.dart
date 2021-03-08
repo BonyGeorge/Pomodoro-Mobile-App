@@ -155,8 +155,8 @@ class TaskProvider with ChangeNotifier {
         url,
         body: json.encode({
           'title': task.title,
-          //'dueTime':task.dueTime,
-          //'dueDate':  task.dueDate,
+          'dueTime': task.dueTime.toString(),
+          'dueDate': task.dueDate.toString(),
           'ownerId': userId,
         }),
       );
@@ -167,7 +167,7 @@ class TaskProvider with ChangeNotifier {
         id: json.decode(response.body)['name'],
       );
       _toDoList.add(newTask);
-      print("Task is added of id =  $newTask.id");
+      print("Task is added of id =  ${newTask.id}");
       notifyListeners();
     } catch (error) {
       print(error);

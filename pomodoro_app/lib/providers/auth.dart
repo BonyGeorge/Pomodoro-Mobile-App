@@ -8,8 +8,6 @@ import 'package:pomodoro_app/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pomodoro_app/screens/timer/timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pomodoro_app/screens/profile/profile.dart';
-import 'package:pomodoro_app/screens/profile/editprofile.dart';
 
 class Auth with ChangeNotifier {
   String _token;
@@ -118,22 +116,25 @@ class Auth with ChangeNotifier {
     }
   }
 
-  void updateprofile(String fullname,String phone){
-  update(fullname,phone);
-  var url =
-            'https://pomodoro-app-miu-default-rtdb.firebaseio.com/user/$_userId.json';
-        http.patch(
-          url,
-          body: json.encode({
-              "Fullname":fullname,
-              "mobile": phone,
-
-          },
-          ),
-        );
+  void updateprofile(String fullname, String phone) async {
+    update(fullname, phone);
+    final prefs = await SharedPreferences.getInstance();
+    var url =
+        'https://pomodoro-app-miu-default-rtdb.firebaseio.com/user/${user.iD}.json';
+    //print(" id = ${user.iD}");
+    await http.patch(
+      url,
+      body: json.encode(
+        {
+          "Id": _userId,
+          "Fullname": fullname,
+          "mobile": phone,
+        },
+      ),
+    );
   }
 
- Future<void> update(String fullname,String phone) async {
+  Future<void> update(String fullname, String phone) async {
     return _authenticate(user.fullName, user.phone, "Update");
   }
 
@@ -159,11 +160,11 @@ class Auth with ChangeNotifier {
     print("//Auto Login $savedUserData");
     try {
       user = UserModel(
-        id: savedUserData['Id'],
-        email: savedUserData['email'],
-        fullname: savedUserData['Fullname'],
-        mobile: savedUserData['mobile'],
-      );
+          id: savedUserData['Id'],
+          email: savedUserData['email'],
+          fullname: savedUserData['Fullname'],
+          mobile: savedUserData['mobile'],
+          username: savedUserData['Username']);
       notifyListeners();
     } on Exception catch (e) {
       print(e.toString());
