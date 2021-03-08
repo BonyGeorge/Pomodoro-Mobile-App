@@ -8,68 +8,81 @@ import 'package:pomodoro_app/providers/projects.dart';
 import 'package:pomodoro_app/widgets/project_list.dart';
 import 'package:pomodoro_app/widgets/add_edit_project.dart';
 
-class Project extends StatefulWidget {
+class Project extends StatelessWidget {
   static const routeName = '/projects';
 
-  @override
-  _ProjectState createState() => _ProjectState();
-}
+  Future _projects(BuildContext context) async {
+    await Provider.of<ProjectProvider>(context, listen: false)
+        .fetchAndSetProjects(filterByUser: true);
+  }
 
-class _ProjectState extends State<Project> {
   @override
   Widget build(BuildContext context) {
-    final projecttList = Provider.of<ProjectProvider>(context).projectsList;
-    //final task = Provider.of<TaskProvider>(context);
+    print('Project build');
     return Scaffold(
-      appBar: GradientAppBar(
-        title: Text('My Projects'),
-        backgroundColorStart: Colors.cyan,
-        backgroundColorEnd: Colors.green,
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (_) => AddNewProject(isEditMode: false),
-              );
-            },
-          ),
-        ],
-      ),
-      drawer: MyDrawer(),
-      body: projecttList.length > 0
-          ? ListView.builder(
-              itemCount: projecttList.length,
-              itemBuilder: (context, index) {
-                return ProjectItem(projecttList[index]);
-              },
-            )
-          : LayoutBuilder(
-              builder: (ctx, constraints) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        height: constraints.maxHeight * 0.5,
-                        child: Image.asset('assets/images/nodata.png',
-                            fit: BoxFit.cover),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        'No Projects added yet...',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ],
-                  ),
+        appBar: GradientAppBar(
+          title: Text('My Projects'),
+          backgroundColorStart: Colors.cyan,
+          backgroundColorEnd: Colors.green,
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (_) => AddNewProject(isEditMode: false),
                 );
               },
             ),
-    );
+          ],
+        ),
+        drawer: MyDrawer(),
+        body: FutureBuilder(
+          future: Provider.of<ProjectProvider>(context, listen: false)
+              .fetchAndSetProjects(filterByUser: true),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              final projetList =
+                  Provider.of<ProjectProvider>(context).projectsList;
+              print(projetList.length);
+              if (projetList.length == 0) {
+                return LayoutBuilder(
+                  builder: (ctx, constraints) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: constraints.maxHeight * 0.5,
+                            child: Image.asset('assets/images/nodata.png',
+                                fit: BoxFit.cover),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Text(
+                            'No tasks added yet...',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              } else {
+                return ListView.builder(
+                  itemCount: projetList.length,
+                  itemBuilder: (context, index) {
+                    return ProjectItem(projetList[index]);
+                  },
+                );
+              }
+            }
+          },
+        ));
   }
 }
