@@ -1,12 +1,22 @@
 // The Tasks Provider.
 
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/models/task.dart';
+import 'package:http/http.dart' as http;
+import 'package:pomodoro_app/providers/auth.dart';
 
 class TaskProvider with ChangeNotifier {
-  final List<Task> _toDoList = [
-    Task(
+  static const baseUrl =
+      'https://pomodoro-app-miu-default-rtdb.firebaseio.com/';
+  String authToken;
+  String userId;
+
+  TaskProvider(this.authToken, this.userId, this._toDoList);
+  List<Task> _toDoList = [
+    /* Task(
       id: 'task#1',
       title: 'Task 1',
       dueDate: DateTime.now(),
@@ -29,7 +39,7 @@ class TaskProvider with ChangeNotifier {
       title: 'Task 4',
       dueDate: DateTime.now(),
       dueTime: TimeOfDay.now(),
-    ),
+    ),*/
   ];
 
   List<Task> _completedList = [
@@ -100,5 +110,67 @@ class TaskProvider with ChangeNotifier {
 
   int get itemCount {
     return _completedList == null ? 0 : _completedList.length;
+  }
+
+  Future<void> fetchAndSetTasks({bool filterByUser = true}) async {
+    final filterString = filterByUser ? 'orderBy="ownerId"&equalTo=1' : '';
+
+    var url = '$baseUrl/Tasks.json?$filterString';
+    try {
+      final response = await http.get(url);
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      if (extractedData == null) {
+        return;
+      }
+      print(response.body);
+      final List<Task> loadedTasks = [];
+      extractedData.forEach((taskid, task) {
+        loadedTasks.add(Task(
+          id: taskid,
+          title: task['title'],
+          /*dueDate: DateTime.parse(task['description']),
+          dueTime: TimeOfDay.fromDateTime(task['dueTime']),*/
+        ));
+      });
+      _toDoList = loadedTasks;
+      print("Task has been added");
+      notifyListeners();
+    } catch (error) {
+      throw (error);
+    }
+  }
+
+  void receiveToken(Auth auth, List<Task> tasks) {
+    authToken = auth.token;
+    userId = auth.userId;
+    print('Tasks received Token for user with Id: $userId');
+    _toDoList = tasks;
+  }
+
+  Future<void> addTask(Task task) async {
+    final url = '$baseUrl/Tasks.json?auth=$authToken';
+    try {
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'title': task.title,
+          'dueTime': task.dueTime,
+          'dueDate': task.dueDate,
+          'ownerId': userId,
+        }),
+      );
+      final newTask = Task(
+        title: task.title,
+        dueDate: task.dueDate,
+        dueTime: task.dueTime,
+        id: json.decode(response.body)['name'],
+      );
+      _toDoList.add(newTask);
+      print("Task is added of id =  $newTask.id");
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw error;
+    }
   }
 }

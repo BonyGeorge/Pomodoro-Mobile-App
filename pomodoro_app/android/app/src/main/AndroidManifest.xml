@@ -16,8 +16,8 @@
         android:label="pomodoro_app"
         android:icon="@mipmap/launcher_icon">
 
-         <meta-data android:name="com.google.android.geo.AIzaSyBcKSpfBSxjVFzi_XSexfDafZ_uFAs7t0A"
-               android:value="AIzaSyBcKSpfBSxjVFzi_XSexfDafZ_uFAs7t0A"/>
+        <meta-data android:name="com.google.android.geo.API_KEY"
+          android:value="AIzaSyBcKSpfBSxjVFzi_XSexfDafZ_uFAs7t0A"/>
 
         <activity
             android:name=".MainActivity"

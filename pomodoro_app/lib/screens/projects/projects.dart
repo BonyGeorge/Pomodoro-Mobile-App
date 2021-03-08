@@ -8,14 +8,14 @@ import 'package:pomodoro_app/providers/projects.dart';
 import 'package:pomodoro_app/widgets/project_list.dart';
 import 'package:pomodoro_app/widgets/add_edit_project.dart';
 
-class Projecty extends StatefulWidget {
+class Project extends StatefulWidget {
   static const routeName = '/projects';
 
   @override
-  _ProjectyState createState() => _ProjectyState();
+  _ProjectState createState() => _ProjectState();
 }
 
-class _ProjectyState extends State<Projecty> {
+class _ProjectState extends State<Project> {
   @override
   Widget build(BuildContext context) {
     final projecttList = Provider.of<ProjectProvider>(context).projectsList;
