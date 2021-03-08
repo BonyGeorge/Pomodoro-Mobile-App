@@ -1,7 +1,15 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/screens/profile/profile.dart';
+import 'package:pomodoro_app/screens/Profile/profile.dart';
 import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:pomodoro_app/providers/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+
+
 
 class Editprofile extends StatefulWidget {
   @override
@@ -9,14 +17,17 @@ class Editprofile extends StatefulWidget {
 }
 
 class _State extends State<Editprofile> {
+
+ File avatarImageFile, backgroundImageFile;
+  
   var _formKey = GlobalKey<FormState>();
   TextEditingController fnameController = TextEditingController();
-  TextEditingController aboutController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
   TextEditingController numController = TextEditingController();
 
+ 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<Auth>(context);
     return Scaffold(
         drawer: MyDrawer(),
         appBar: GradientAppBar(
@@ -42,54 +53,30 @@ class _State extends State<Editprofile> {
                         ),
                       ),
                     ),
-                    Container(
+                    
+                   Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
-                        maxLength: 100,
-                        controller: aboutController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'About',
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: TextFormField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'E-mail',
-                        ),
-                        validator: (value) {
-                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                              .hasMatch(value)) {
-                            return 'Please enter a valid Email';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: TextFormField(
-                        maxLength: 11,
-                        keyboardType: TextInputType.number,
-                        controller: numController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Mobile Number',
-                        ),
-                        validator: (value) {
-                          if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
-                                  .hasMatch(value) &&
-                              // ignore: unrelated_type_equality_checks
-                              value.length != 11) {
-                            return 'Enter 11 No. only without letters';
-                          }
-                          return null;
-                        },
-                      ),
+                          keyboardType: TextInputType.number,
+                          maxLength: 11,
+                          controller: numController,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                          ],
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Mobile Number',
+                              hintText: "01*********"),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return value.isEmpty
+                                  ? "The Mobile field is Empty"
+                                  : null;
+                            } else if (value.length < 11) {
+                              return 'Enter sum of 11 Numbers';
+                            }
+                            return null;
+                          }),
                     ),
                     SizedBox(
                       height: 30.0,
@@ -98,24 +85,27 @@ class _State extends State<Editprofile> {
                       height: 50,
                       width: 250.00,
                       child: RaisedButton(
-                          onPressed: () {
+                          onPressed: () async{
                             print(fnameController.text);
-                            print(aboutController.text);
-                            print(emailController.text);
                             print(numController.text);
 
-                            setState(() {
+                            
                               if (_formKey.currentState.validate()) {
+                                try{
+                                //await Provider.of<Auth>(context,listen: false).update("fullname", "phone")
+
+                               user.update(fnameController.text,numController.text);
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ProfileApp()));
-                                if (_formKey.currentState.validate()) {
-                                  Scaffold.of(context).showSnackBar(SnackBar(
-                                      content: Text("Processing Data")));
-                                }
+                                        builder: (context) => ProfileApp()));                       
                               }
-                            });
+                              catch(error){
+                                print(error);
+                              }
+                              
+                                  }
+
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100.0)),
