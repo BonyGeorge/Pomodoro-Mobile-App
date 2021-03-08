@@ -1,7 +1,14 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/screens/profile/profile.dart';
 import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:pomodoro_app/providers/auth.dart';
+import 'package:provider/provider.dart';
+
+
 
 class Editprofile extends StatefulWidget {
   @override
@@ -9,14 +16,19 @@ class Editprofile extends StatefulWidget {
 }
 
 class _State extends State<Editprofile> {
+
+ File avatarImageFile, backgroundImageFile;
+  
   var _formKey = GlobalKey<FormState>();
   TextEditingController fnameController = TextEditingController();
   TextEditingController aboutController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController numController = TextEditingController();
 
+ 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<Auth>(context);
     return Scaffold(
         drawer: MyDrawer(),
         appBar: GradientAppBar(
@@ -106,14 +118,11 @@ class _State extends State<Editprofile> {
 
                             setState(() {
                               if (_formKey.currentState.validate()) {
+                                user.updateprofile(fnameController.text, aboutController.text, emailController.text, numController.text);
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ProfileApp()));
-                                if (_formKey.currentState.validate()) {
-                                  Scaffold.of(context).showSnackBar(SnackBar(
-                                      content: Text("Processing Data")));
-                                }
+                                        builder: (context) => ProfileApp()));                       
                               }
                             });
                           },

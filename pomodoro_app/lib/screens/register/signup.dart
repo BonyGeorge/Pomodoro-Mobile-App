@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/providers/auth.dart';
 import 'package:pomodoro_app/screens/register/login.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:pomodoro_app/models/user.dart';
 
 class Signup extends StatefulWidget {
   static const routeName = '/signup';
@@ -18,6 +21,24 @@ class _State extends State<Signup> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController conController = TextEditingController();
   TextEditingController numController = TextEditingController();
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('An Error Occurred!'),
+        content: Text(message),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Okay'),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,15 +195,27 @@ class _State extends State<Signup> {
                       height: 50,
                       width: 250.00,
                       child: RaisedButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            // ignore: unnecessary_statements
+
                             print(fnameController.text);
                             print(lnameController.text);
                             print(emailController.text);
                             print(numController.text);
                             print(passwordController.text);
-                            print(conController);
-                            setState(() {
-                              if (_formKey.currentState.validate()) {
+                            print(conController.text);
+
+                            if (_formKey.currentState.validate()) {
+                              try {
+                                await Provider.of<Auth>(context, listen: false)
+                                    .addUser(UserModel(
+                                        email: emailController.text,
+                                        fullname: fnameController.text,
+                                        conpassword: conController.text,
+                                        mobile: numController.text,
+                                        username: lnameController.text,
+                                        password: passwordController.text));
+
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
@@ -190,8 +223,33 @@ class _State extends State<Signup> {
                                 if (_formKey.currentState.validate()) {
                                   print("Processing Data...");
                                 }
+                              } catch (error) {
+                                var errorMessage = 'Authentication failed';
+                                if (error.toString().contains('EMAIL_EXISTS')) {
+                                  errorMessage =
+                                      'This email address is already in use.';
+                                } else if (error
+                                    .toString()
+                                    .contains('INVALID_EMAIL')) {
+                                  errorMessage =
+                                      'This is not a valid email address';
+                                } else if (error
+                                    .toString()
+                                    .contains('WEAK_PASSWORD')) {
+                                  errorMessage = 'This password is too weak.';
+                                } else if (error
+                                    .toString()
+                                    .contains('EMAIL_NOT_FOUND')) {
+                                  errorMessage =
+                                      'Could not find a user with that email.';
+                                } else if (error
+                                    .toString()
+                                    .contains('INVALID_PASSWORD')) {
+                                  errorMessage = 'Invalid password.';
+                                }
+                                _showErrorDialog(errorMessage);
                               }
-                            });
+                            }
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100.0)),
@@ -269,3 +327,5 @@ class _State extends State<Signup> {
                 ))));
   }
 }
+
+auth({bool contex}) {}

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/providers/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:pomodoro_app/models/user.dart';
 import 'package:pomodoro_app/screens/timer/timer.dart';
 import '../register/signup.dart';
 import '../register/forget.dart';
@@ -15,6 +18,24 @@ class _State extends State<Signin> {
   var _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('An Error Occurred!'),
+        content: Text(message),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Okay'),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,35 +97,75 @@ class _State extends State<Signin> {
                         },
                       ),
                     ),
-                    FlatButton(
-                      textColor: Colors.green[200],
-                      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                      child: Text('Forgot Password',
-                          style: TextStyle(fontSize: 40)),
+                    // FlatButton(
+                    // textColor: Colors.green[200],
+                    //padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                    //child: Text('Forgot Password',
+                    //  style: TextStyle(fontSize: 40)),
 
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ForgetPassword()));
-                      },
-                      //fo
+                    // onPressed: () {
+                    // Navigator.pushReplacement(
+                    //   context,
+                    // MaterialPageRoute(
+                    //   builder: (context) => ForgetPassword()));
+                    //  },
+                    //fo
+                    //),
+
+                    SizedBox(
+                      height: 30.0,
                     ),
                     Container(
                         height: 50,
                         width: 250.00,
                         child: RaisedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               print(emailController.text);
                               print(passwordController.text);
-                              setState(() {
-                                if (_formKey.currentState.validate()) {
+
+                              if (_formKey.currentState.validate()) {
+                                try {
+                                  await Provider.of<Auth>(context,
+                                          listen: false)
+                                      .login(emailController.text,
+                                          passwordController.text);
+                                  //     Provider.of<Auth>(context, listen: false)
+                                  // .getUser(UserModel(
+                                  //     email: emailController.text,
+                                  // password: passwordController.text));
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => TimerScreen()));
+                                } catch (error) {
+                                  var errorMessage = 'Authentication failed';
+                                  if (error
+                                      .toString()
+                                      .contains('EMAIL_EXISTS')) {
+                                    errorMessage =
+                                        'This email address is already in use.';
+                                  } else if (error
+                                      .toString()
+                                      .contains('INVALID_EMAIL')) {
+                                    errorMessage =
+                                        'This is not a valid email address';
+                                  } else if (error
+                                      .toString()
+                                      .contains('WEAK_PASSWORD')) {
+                                    errorMessage = 'This password is too weak.';
+                                  } else if (error
+                                      .toString()
+                                      .contains('EMAIL_NOT_FOUND')) {
+                                    errorMessage =
+                                        'Could not find a user with that email.';
+                                  } else if (error
+                                      .toString()
+                                      .contains('INVALID_PASSWORD')) {
+                                    errorMessage = 'Invalid password.';
+                                  }
+                                  _showErrorDialog(errorMessage);
                                 }
-                              });
+                              }
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(100.0)),
@@ -133,6 +194,7 @@ class _State extends State<Signin> {
                                         fontWeight: FontWeight.w300),
                                   ),
                                 )))),
+
                     Container(
                         child: Row(
                       children: <Widget>[
@@ -158,31 +220,31 @@ class _State extends State<Signin> {
                       ],
                       mainAxisAlignment: MainAxisAlignment.center,
                     )),
-                    Container(
-                        child: Row(
-                      children: <Widget>[
-                        Text("Do You wanna "),
-                        FlatButton(
-                          textColor: Colors.green[200],
-                          child: Text(
-                            'Change password ?',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            //signup screen
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ChangePassword()));
-                            if (_formKey.currentState.validate()) {
-                              Scaffold.of(context).showSnackBar(
-                                  SnackBar(content: Text("Process")));
-                            }
-                          },
-                        )
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ))
+                    // Container(
+                    //   child: Row(
+                    //children: <Widget>[
+                    // Text("Do You wanna "),
+                    //FlatButton(
+                    // textColor: Colors.green[200],
+                    //child: Text(
+                    //'Change password ?',
+                    //style: TextStyle(fontSize: 20),
+                    //),
+                    //onPressed: () {
+                    //signup screen
+                    //Navigator.pushReplacement(
+                    //  context,
+                    //MaterialPageRoute(
+                    //  builder: (context) => ChangePassword()));
+                    //if (_formKey.currentState.validate()) {
+                    //Scaffold.of(context).showSnackBar(
+                    //  SnackBar(content: Text("Process")));
+                    // }
+                    //},
+                    // )
+                    //],
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    // ))
                   ],
                 ))));
   }
