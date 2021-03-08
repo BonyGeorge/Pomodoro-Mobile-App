@@ -222,6 +222,9 @@ class _State extends State<Signup> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Signin()));
+                                if (_formKey.currentState.validate()) {
+                                  print("Processing Data...");
+                                }
                               } catch (error) {
                                 var errorMessage = 'Authentication failed';
                                 if (error.toString().contains('EMAIL_EXISTS')) {
