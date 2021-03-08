@@ -4,7 +4,6 @@ import 'package:pomodoro_app/widgets/drawer.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:pomodoro_app/providers/auth.dart';
 import 'package:provider/provider.dart';
-
 class ProfileApp extends StatelessWidget {
   static const routeName = '/profile';
   @override
@@ -148,39 +147,7 @@ class ProfileApp extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "About me:",
-                    style: TextStyle(
-                        color: Colors.greenAccent,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 20.0),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text(
-                    'Student/Developer...',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.black,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 30.0,
-          ),
+         
           Container(
             width: 160.00,
             child: RaisedButton(
