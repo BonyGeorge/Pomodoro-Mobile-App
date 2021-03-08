@@ -72,8 +72,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5),
-        () => Navigator.pushNamed(context, Signup.routeName));
+    Timer(Duration(seconds: 5), () async {
+      final lis = await Provider.of<Auth>(context, listen: false).autoLogin();
+      if (lis == true) {
+        Navigator.pushNamed(context, TimerScreen.routeName);
+      } else {
+        Navigator.pushNamed(context, Signup.routeName);
+      }
+    });
   }
 
   @override
