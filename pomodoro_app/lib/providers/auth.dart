@@ -77,14 +77,27 @@ class Auth with ChangeNotifier {
 
 
 
-void updateprofile(String fullname , String about , String email , String phone){
 
+ Future<void> update( fullname,  phone) async {
+    return _authenticate(fullname, phone, "Update");
+  }
+void updateprofile(UserModel user)
+{
+  update(user.fullname,user.phone);
+  var url =
+        'https://pomodoro-app-miu-default-rtdb.firebaseio.com/user/$_userId.json';
+        http.patch(
+          url,
+          body: json.encode(
+            {
+              "Fullname": user.fullName,
+               "mobile": user.phone,
+            },
+
+          ),
+        );
 
 }
-
-
-
-
   void addUser(UserModel user) {
     signup(user.email, user.passWord);
     var url =
