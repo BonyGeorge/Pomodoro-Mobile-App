@@ -9,7 +9,7 @@ class ProfileApp extends StatelessWidget {
   static const routeName = '/profile';
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<Auth>(context);
+    final user = Provider.of<Auth>(context).user;
     return Scaffold(
       drawer: MyDrawer(),
       appBar: GradientAppBar(
@@ -43,7 +43,7 @@ class ProfileApp extends StatelessWidget {
                         height: 6.0,
                       ),
                       Text(
-                        "@Pomodoro",
+                        "${user.username}",
                         style: TextStyle(
                           fontSize: 20.0,
                           color: Colors.white,
@@ -75,7 +75,7 @@ class ProfileApp extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    'Pomodoro',
+                    '${user.fullname}',
                     style: TextStyle(
                       fontSize: 15.0,
                       fontStyle: FontStyle.italic,
@@ -105,7 +105,7 @@ class ProfileApp extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    'Promodoro_App@gmail.com',
+                    '${user.email}',
                     style: TextStyle(
                       fontSize: 15.0,
                       fontStyle: FontStyle.italic,
@@ -135,7 +135,7 @@ class ProfileApp extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    '0123456789',
+                    '${user.mobile}',
                     style: TextStyle(
                       fontSize: 15.0,
                       fontStyle: FontStyle.italic,

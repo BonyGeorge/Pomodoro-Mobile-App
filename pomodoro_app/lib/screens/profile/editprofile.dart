@@ -89,12 +89,11 @@ class _State extends State<Editprofile> {
                             print(fnameController.text);
                             print(numController.text);
 
-                            
                               if (_formKey.currentState.validate()) {
                                 try{
                                 //await Provider.of<Auth>(context,listen: false).update("fullname", "phone")
 
-                               user.update(fnameController.text,numController.text);
+                               user.updateprofile(fnameController.text,numController.text);
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
